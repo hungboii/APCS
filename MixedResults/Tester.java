@@ -10,8 +10,8 @@ public class Tester
         double p1 = 57.2 * (i1/i2) + 1;
         double p2 = 57.2 * ((double)i1/i2) + 1;
         double p3 = 15 - i1 * (d1 * 3) + 4;
-        double p4 = 15 - i1 * (int)(d1 * 3) + 4;
-        double p5 = 15 - i1 * ((int)d1 * 3) + 4;
+        int p4 = 15 - i1 * (int)(d1 * 3) + 4;
+        int p5 = 15 - i1 * ((int)d1 * 3) + 4;
 
         System.out.println("Problem 1: " + p1);
         System.out.println("Problem 2: " + p2);
