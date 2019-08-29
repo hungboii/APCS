@@ -5,7 +5,7 @@ public class RadiusOfCircle
     {
         Scanner alpha = new Scanner(System.in);
         System.out.print("What is the area? ");
-        int ooga = alpha.nextInt();
+        double ooga = alpha.nextDouble();
         double booga = Math.sqrt(ooga/Math.PI);
         System.out.print("Radius of your circle is " + booga + ".");
     }
