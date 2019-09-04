@@ -14,6 +14,5 @@ public class OddorEven
         {
             System.out.println("The integer " + corrupt + " is odd.");
         }
-
     }
 }
