@@ -5,12 +5,12 @@ public class oddLooping
     {
         Scanner monitor = new Scanner(System.in);
         int x = 0;
-        while(x==0)
+        while(x < 3)
         {
             System.out.print("Enter an integer: ");
             int y = monitor.nextInt();
         
-            if (x % 2 == 0)
+            if (y % 2 == 0)
             {
                 System.out.println("The integer " + y + " is even." );
             }
@@ -18,6 +18,7 @@ public class oddLooping
             {
                 System.out.println("The integer " + y + " is odd.");
             }
+            x++;
         }
     }
 }   
