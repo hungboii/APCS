@@ -8,24 +8,20 @@ public class lab08k
         int x = kb.nextInt();
         System.out.print("Enter another number. ");
         int y = kb.nextInt();
-        int z = 0;
         int w = 0;
 
-        while(z <= x || z <= y)
+        for(int z = 1; z <= x || z <= y; z++)
         {
-            z++;
             if(x % z == 0 && y % z == 0)
             {
                 w = z;
-                if(z == y || z == x)
-                {
-                    System.out.print("the gcd of " + x + " and " + y + " is " + w + ".");
-                }
-                else if(z == 1)
-                {
-                    System.out.print("the gcd of " + x + " and " + y + " is " + w + ".");
-                }
             }
+            else if(z == y || z == x)
+            {
+                System.out.print("the gcd of " + x + " and " + y + " is " + w);
+                break;
+            }
+
         }       
     }
 }
