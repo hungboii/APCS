@@ -1,11 +1,11 @@
 import java.util.Scanner;
-public class test
+public class lab08c
 {
     public static void main(String[] args)
     {
-        Scanner blah = new Scanner(System.in);
-        System.out.print("enter a word! ");
-        String word = blah.nextLine();
+        Scanner kb = new Scanner(System.in);
+        System.out.print("Enter a word. ");
+        String word = kb.nextLine();
 
         for(int num = 0; num < word.length(); num++)
         {
