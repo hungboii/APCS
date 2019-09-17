@@ -5,9 +5,9 @@ public class lab08h
     {
         Scanner kb = new Scanner(System.in);
         System.out.print("Enter a number. ");
-        int x = kb.nextInt();
-        int y = 0;
-        int x1 = x;
+        long x = kb.nextLong();
+        long y = 0;
+        long x1 = x;
         
         for(y = x; x > 1; x--)
         {
