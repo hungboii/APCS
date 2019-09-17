@@ -14,7 +14,5 @@ public class lab08h
             y = y * (x-1);
         }
         System.out.println("factorial of " + x1 + " is " + y);
-        System.out.print(1278945280 * 15);
-
     }
 }
