@@ -6,22 +6,20 @@ public class lab09g
         Scanner kb = new Scanner(System.in);
         System.out.print("Enter a sentence. ");
         String sentence = kb.nextLine();
-        System.out.print("string to remove: ");
-        String phrase = kb.nextLine();
-        int index = sentence.indexOf(phrase);
-        String remaining = sentence;
-        int length = phrase.length();
+        System.out.print("string to remove:  ");
+        String remove = kb.nextLine();
 
-        while(index != -1)
+        System.out.println();
+        System.out.println(sentence + " - String to remove " + remove);
+        int i = 0;
+    
+        while(i < sentence.length())
         {
-            String removed = remaining.substring(0, index);
-            remaining = remaining.substring(index + length + 1);
-            index = remaining.indexOf(phrase);
-            System.out.print(removed);
+            if(!(remove.equals(sentence.substring(i, i + 1))));
+            {
+                System.out.print(sentence.substring(i, i + 1));
+            }    
+            i++;
         }   
-        if(index == -1)
-        {
-            System.out.print(remaining);
-        }
     }
 }

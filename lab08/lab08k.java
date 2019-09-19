@@ -16,12 +16,11 @@ public class lab08k
             {
                 w = z;
             }
-            else if(z == y || z == x)
+            if(z == y || z == x)
             {
                 System.out.print("the gcd of " + x + " and " + y + " is " + w);
                 break;
             }
-
         }       
     }
 }
