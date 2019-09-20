@@ -13,14 +13,30 @@ public class test
         System.out.println(sentence + " - String to remove " + remove);
         int i = 0;
     
-        while(i < sentence.length() + remove.length())
+        while(i < sentence.length() - remove.length())
         {
-            String word = sentence.substring(i, i + sentence.length());
+            String word = sentence.substring(i, i + remove.length());
+            
             if(!(remove.equals(word)))
             {
                 System.out.print(sentence.substring(i, i + 1));
+                i++;
             }
-            i++;
+
+            if((remove.equals(word)))
+            {
+                i = i + remove.length();
+            }
         }   
+
+        if(i >= sentence.length() - remove.length())
+        {
+            String leftover = sentence.substring(i);
+            
+            if(!(leftover.equals(remove)))
+            {
+                System.out.print(leftover);
+            }
+        }
     }
 }
