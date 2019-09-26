@@ -1,42 +1,21 @@
-import java.util.Scanner;
 public class test
 {
     public static void main(String[] args)
     {
-        Scanner kb = new Scanner(System.in);
-        System.out.print("Enter a sentence. ");
-        String sentence = kb.nextLine();
-        System.out.print("string to remove:  ");
-        String remove = kb.nextLine();
+        Double a = Double.parseDouble(args[0]);
+        Double b = Double.parseDouble(args[1]);
+        Double c = Double.parseDouble(args[2]);
 
-        System.out.println();
-        System.out.println(sentence + " - String to remove " + remove);
-        int i = 0;
-    
-        while(i < sentence.length() - remove.length())
-        {
-            String word = sentence.substring(i, i + remove.length());
-            
-            if(!(remove.equals(word)))
-            {
-                System.out.print(sentence.substring(i, i + 1));
-                i++;
-            }
+        System.out.println("The positive x value is " + littleMethod(a, b, c));
+    }
 
-            if((remove.equals(word)))
-            {
-                i = i + remove.length();
-            }
-        }   
-
-        if(i >= sentence.length() - remove.length())
-        {
-            String leftover = sentence.substring(i);
-            
-            if(!(leftover.equals(remove)))
-            {
-                System.out.print(leftover);
-            }
-        }
+    public static Double littleMethod(Double a, Double b, Double c)
+    {
+        Double radical = Math.sqrt(Math.pow(b, 2) - (4 * a * c));
+        Double twoA = 2 * a;
+        
+        Double answer = (0 - b + radical) / twoA;
+        return answer;
     }
 }
+    
