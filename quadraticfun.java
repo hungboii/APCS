@@ -8,9 +8,9 @@ public class quadraticfun
 
         System.out.print(equation(a, b, c));
     }
-    public static double equation(double a, double b, double c)
+    public static double equation(double a2, double b2, double c2)
     {
-        double answer = (Math.sqrt(Math.pow(b, 2) - (4 * a * c))) / 2 * a;
+        double answer = (-b2 + (Math.sqrt((b2 * b2) - (4 * a2 * c2)))) / 2 * a2;
         return answer;
     }
 }
