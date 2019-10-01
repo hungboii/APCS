@@ -20,11 +20,8 @@ public class planetarray
         System.out.println(" ");
 
         double[] gravities = {3.7, 8.87, 3.711, 24.79, 10.44, 8.87, 11.15};
-
-        for(int j = choice - 1; j < choice; j++)
-        {
-            double weight2 = weight / 9.8 * gravities[j];
-            System.out.print("Your weight on " + planets[j] + " would be " + weight2);
-        }
+        
+        double planetweight = weight / 9.8 * gravities[choice - 1];
+        System.out.print("Your weight on " + planets[choice - 1] + " would be " + planetweight);
     }
 }
