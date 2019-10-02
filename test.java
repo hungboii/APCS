@@ -1,28 +1,31 @@
-public class test
+public class lab14c
 {
     public static void main(String[] args)
     {
-       int i = 52;
-       if((i / 10 + i % 10) % 7 == 0)
-        System.out.print("yup");
-        for(int i = 0; i < args.length; i++)
+        double[] numbers = {10,30,40,70,100};
+        for(int i = 0; i < numbers.length; i++)
         {
-            double x = Double.parseDouble(args[i]);
-            System.out.println("num " + i + ":: " + x);
+            System.out.println("num " + i + ":: " + numbers[i]);
         }
-        Double a = Double.parseDouble(args[0]);
-        Double b = Double.parseDouble(args[1]);
-        Double c = Double.parseDouble(args[2]);
-
-        System.out.println("The positive x value is " + littleMethod(a, b, c));
+        System.out.print("biggest = " + bigNumber(numbers.length));
     }
-
-    public static Double littleMethod(Double a, Double b, Double c)
+    public static double bigNumber(int size)
     {
-        Double radical = Math.sqrt(Math.pow(b, 2) - (4 * a * c));
-        Double twoA = 2 * a;
-        
-        Double answer = (0 - b + radical) / twoA;
-        return answer;
+        double[] numbers = {154, 2451, 541, 5854, 0};
+        double count = 0;
+
+        for(int i = 0; i <  size; i++ )
+        {
+            for(int j = i+1; j < size; j++)
+            { 
+                if(numbers[i] > numbers[j])
+                {
+                    count = numbers[i];
+                    numbers[i] = numbers[j];
+                    numbers[j] = count;
+                }
+            }
+        }
+        return count;
     }
 }

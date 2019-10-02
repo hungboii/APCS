@@ -2,7 +2,7 @@ public class lab14c
 {
     public static void main(String[] args)
     {
-        double[] numbers = {154, 2451, 541, 5854, 0};
+        double[] numbers = {10, 20, 25, 63, 96, 100};
         for(int i = 0; i < numbers.length; i++)
         {
             System.out.println("num " + i + ":: " + numbers[i]);
@@ -11,13 +11,14 @@ public class lab14c
     }
     public static double bigNumber(int size)
     {
-        double[] numbers = {154, 2451, 541, 5854, 0};
-        double count = 0;
-        for(int i = 1; i < size; i++)
+        double[] numbers = {10, 30, 25, 63, 96, 100};
+        double count = numbers[0];
+
+        for(int i = 1; i < numbers.length; i++)
         {
-            if(numbers[i] > numbers[i - 1])
+            if(numbers[i] > count)
             {
-                count = numbers[i - 1];
+                count = numbers[i];
             }
         }
         return count;
