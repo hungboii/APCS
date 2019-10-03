@@ -1,31 +1,26 @@
-public class lab14c
+public class test
 {
-    public static void main(String[] args)
+    public static void main(String [] args)
     {
-        double[] numbers = {10,30,40,70,100};
-        for(int i = 0; i < numbers.length; i++)
+        double[] grades = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+        for(int i = 0; i < grades.length; i++)
         {
-            System.out.println("num " + i + ":: " + numbers[i]);
+            System.out.println("grade " + i + " :: " + grades[i]);
         }
-        System.out.print("biggest = " + bigNumber(numbers.length));
+        System.out.println();
+        System.out.print("average :: " + findAverage(grades.length, grades));
     }
-    public static double bigNumber(int size)
+    public static double findAverage(int size, double[] grades)
     {
-        double[] numbers = {154, 2451, 541, 5854, 0};
-        double count = 0;
+        double sum = 0;
+        double answer = 0;
 
-        for(int i = 0; i <  size; i++ )
+        for(int i = 0; i < size; i++)
         {
-            for(int j = i+1; j < size; j++)
-            { 
-                if(numbers[i] > numbers[j])
-                {
-                    count = numbers[i];
-                    numbers[i] = numbers[j];
-                    numbers[j] = count;
-                }
-            }
+            sum = sum + grades[i];
         }
-        return count;
+        answer = sum / size;
+
+        return answer;
     }
 }
