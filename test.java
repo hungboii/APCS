@@ -2,54 +2,27 @@ public class test
 {
     public static void main(String[] args)
     {
-        int[] list = {1, 1, 1, 2, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 5, 4, 4, 4, 6};
-        int[] storage = new int[arraySize(list)];
-
-        int groupSize = 1;
-
-        for(int i = 1; i < list.length; i++)
-        {
-            if(list[i] == list[i - 1])
-            {
-                groupSize++;
-            }
-
-            else
-            {
-                if(groupSize > 0)
-                {
-                    for(int j = 0; j < groupSize; j++)
-                    {
-                        storage[j] = storage[j] + 1;
-                    }
-                }
-                groupSize = 1;
-            }
-        }
-
-        if(groupSize > 0)
-        {
-            for(int j = 0; j < groupSize; j++)
-            {
-                storage[j] = storage[j] + 1;
-            }
-        }      
-
-        for(int k = 0; k < storage.length; k++)
-            System.out.println("size " + (k + 1) + " count == " + storage[k]);
+        int number = Integer.parseInt(args[0]);
+        
+        System.out.print(number + " is " + toRoman(number));     
     }
-
-    public static int arraySize(int[] numbers)
+    public static String toRoman(int orig)
     {
-        int count = numbers[0];
+        String[] romanNumbers = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
+        int[] numbers = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
 
-        for(int i = 1; i < numbers.length; i++)
-        {
-            if(numbers[i] > count)
+        String roman = "";
+
+        for(int i = 0; orig > 0; i++)
+        {    
+            if(numbers[i] <= orig)
             {
-                count = numbers[i];
+                orig = orig - numbers[i];
+                roman = roman + romanNumbers[i];
+                i = 0;
             }
         }
-        return count;
+        return roman;
     }
 }
+   
