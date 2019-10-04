@@ -1,26 +1,55 @@
 public class test
 {
-    public static void main(String [] args)
+    public static void main(String[] args)
     {
-        double[] grades = {1, 2, 3, 4, 5, 6, 7, 8, 9};
-        for(int i = 0; i < grades.length; i++)
+        int[] list = {1, 1, 1, 2, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 5, 4, 4, 4, 6};
+        int[] storage = new int[arraySize(list)];
+
+        int groupSize = 1;
+
+        for(int i = 1; i < list.length; i++)
         {
-            System.out.println("grade " + i + " :: " + grades[i]);
+            if(list[i] == list[i - 1])
+            {
+                groupSize++;
+            }
+
+            else
+            {
+                if(groupSize > 0)
+                {
+                    for(int j = 0; j < groupSize; j++)
+                    {
+                        storage[j] = storage[j] + 1;
+                    }
+                }
+                groupSize = 1;
+            }
         }
-        System.out.println();
-        System.out.print("average :: " + findAverage(grades.length, grades));
+
+        if(groupSize > 0)
+        {
+            for(int j = 0; j < groupSize; j++)
+            {
+                storage[j] = storage[j] + 1;
+            }
+        }      
+
+        for(int k = 0; k < storage.length; k++)
+            System.out.println("size " + (k + 1) + " count == " + storage[k]);
     }
-    public static double findAverage(int size, double[] grades)
+
+    public static int arraySize(int[] numbers)
     {
-        double sum = 0;
-        double answer = 0;
+        int count = numbers[0];
 
-        for(int i = 0; i < size; i++)
+        for(int i = 1; i < numbers.length; i++)
         {
-            sum = sum + grades[i];
+            if(numbers[i] > count)
+            {
+                count = numbers[i];
+            }
         }
-        answer = sum / size;
-
-        return answer;
+        return count;
     }
 }
