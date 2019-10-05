@@ -2,14 +2,15 @@ public class lab14i
 {
     public static void main(String[] args)
     {
-        String input = args[0];
+        String input = args[0];  
         int number = 0;
-
-        if(input has number)
+        
+        char chr = input.charAt(0);
+        if(Character.isDigit(chr))
         {
-            number = input.parseInt();
+            number = Integer.parseInt(args[0]);
             System.out.print(input + " is " + toRoman(number));
-        }   
+        }
         else
         {
             System.out.print(input + " is " + toNumber(input));
