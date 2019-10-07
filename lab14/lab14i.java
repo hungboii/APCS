@@ -68,7 +68,8 @@ public class lab14i
             {
                 orig = orig - numbers[i];
                 roman = roman + romanNumbers[i];
-                i = 0;
+                i = -1;
+                System.out.println(roman);
             }
         }
         return roman;
