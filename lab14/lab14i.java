@@ -1,14 +1,17 @@
+import java.util.Scanner;
 public class lab14i
 {
     public static void main(String[] args)
     {
-        String input = args[0];  
+        Scanner kb = new Scanner(System.in);
+        System.out.print("Enter a base 10 or roman number. ");
+        String input = kb.nextLine();
         int number = 0;
         
         char chr = input.charAt(0);
         if(Character.isDigit(chr))
         {
-            number = Integer.parseInt(args[0]);
+            number = Integer.parseInt(input);
             System.out.print(input + " is " + toRoman(number));
         }
         else
