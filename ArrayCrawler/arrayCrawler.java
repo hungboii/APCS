@@ -1,0 +1,43 @@
+public class arrayCrawler
+{
+    public static void main(String[] args)
+    {
+        int[] nums1 = {1, 2, 4, 6, 7, 9, 13, 14, 17};
+        int[] nums2 = {0, 3, 5, 8, 9, 11, 12, 14, 17, 18, 20};
+
+        System.out.println(lowestCommon1(nums1, nums2));
+        System.out.println(lowestCommon2(nums1, nums2));
+    }
+    public static int lowestCommon1(int[] nums1, int[] nums2)
+    {
+        int j = 0;
+        for(int i = 0; nums1[i] != nums2[j]; i++)
+        {
+            while(nums1[i] > nums2[j])
+            {
+                j++;
+            }
+            if(nums1[i] == nums2[j])
+            {
+                return nums1[i];
+            }
+        }
+        return 6969;
+    }
+    public static int lowestCommon2(int[] nums1, int[] nums2)
+    {
+        int answer = 0; 
+        method2: for(int i = 0; i < nums1.length; i++)
+        {
+            for(int j = 0; j < nums2.length; j++)
+            {
+                if(nums1[i] == nums2[j])
+                {
+                    answer = nums1[i];
+                    break method2;
+                }
+            }
+        }
+        return answer;
+    }
+}
