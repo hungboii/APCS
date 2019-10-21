@@ -1,29 +1,34 @@
 public class test
 {
-    public static void main(String [] args)
+    public static void main(String[] args)
     {
-        String[] islands = new String[4];
+        int[] nums1 = {1, 2, 4, 6, 7, 9, 13, 14, 17};
+        int[] nums2 = {0, 3, 5, 8, 9, 11, 12, 14, 17, 18, 20};
 
-        islands[0] = "Bermuda";
-        islands[1] = "Fiji" ;
-        islands[2] = "Azores";
-        islands[3] = "Cozumel";
+        System.out.println(lowestCommon2(nums1, nums2));
+    }
+    public static int lowestCommon2(int[] nums1, int[] nums2)
+    {
+        int i = 0;
+        int answer = 0;
+        int comparison = 0;
+        method2:  
+            for(int j = 0; j < nums1.length; j++)
+            {
+                if(nums1[j] < nums2[i])
+                    continue;
 
-        int[] index = new int[4];
-
-        index[0] = 1;
-        index[1] = 3;
-        index[2] = 0;
-        index[3] = 2;
-
-        int y = 0;
-        int ref;
-        while(y < 4)
-        {
-            ref = index[y];
-            System.out.print("island = ");
-            System.out.println(islands[ref]);   
-            y = y + 1;
-        }
+                while(nums1[j] >= nums2[i])
+                {
+                    comparison++;
+                    if(nums1[j] == nums2[i])
+                    {
+                        answer = nums1[j];
+                        break method2;
+                    }
+                    i++;
+                }
+            }
+            return comparison;
     }
 }

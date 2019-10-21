@@ -10,34 +10,43 @@ public class arrayCrawler
     }
     public static int lowestCommon1(int[] nums1, int[] nums2)
     {
-        int j = 0;
-        for(int i = 0; nums1[i] != nums2[j]; i++)
-        {
-            while(nums1[i] > nums2[j])
+        int answer = 0;
+        method1: 
+            for(int i = 0; i < nums1.length; i++)
             {
-                j++;
+                for(int j = 0; j < nums2.length; j++)
+                {
+                    if(nums1[i] == nums2[j])
+                    {
+                        answer = nums1[i];
+                        break method1;
+                    }
+                }
             }
-            if(nums1[i] == nums2[j])
-            {
-                return nums1[i];
-            }
-        }
-        return 6969;
+        return answer;
     }
     public static int lowestCommon2(int[] nums1, int[] nums2)
     {
-        int answer = 0; 
-        method2: for(int i = 0; i < nums1.length; i++)
-        {
-            for(int j = 0; j < nums2.length; j++)
+        int i = 0;
+        int answer = 0;
+        int comparison = 0;
+        method2:  
+            for(int j = 0; j < nums1.length; j++)
             {
-                if(nums1[i] == nums2[j])
+                if(nums1[j] < nums2[i])
+                    continue;
+
+                while(nums1[j] >= nums2[i])
                 {
-                    answer = nums1[i];
-                    break method2;
+                    comparison++;
+                    if(nums1[j] == nums2[i])
+                    {
+                        answer = nums1[j];
+                        break method2;
+                    }
+                    i++;
                 }
             }
-        }
-        return answer;
+            return answer;
     }
 }
