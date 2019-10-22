@@ -13,5 +13,16 @@ public class fractionsTester
         fraction.oneLine();
         System.out.println();
         fraction.manyLines();
+        System.out.println();
+
+        if(fraction.isReducible())
+        {
+            System.out.println("Your fraction is reducible.");
+            fraction.reduce();
+        }
+        else
+        {
+            System.out.print("Your fraction is not reducible.");
+        }
     }
 }
