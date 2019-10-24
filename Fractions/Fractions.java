@@ -67,7 +67,7 @@ public class Fractions
 
         int gcf = 1;
 
-        yessir: 
+        mybadmrjooiforgotabouttheresubmitpolicy: 
         for (int i = nums1.length - 1; i >= 0; i--) 
         {
             for(int j = nums2.length - 1; j >= 0; j--)
@@ -75,7 +75,7 @@ public class Fractions
                 if(nums1[i] == nums2[j] && nums1[i] != 0)
                 {
                     gcf = nums1[i];
-                    break yessir;
+                    break mybadmrjooiforgotabouttheresubmitpolicy;
                 }
             }
         }
