@@ -17,6 +17,11 @@ public class Robot
             if(pos == hall.length - 1)
                 return true;
         }
+        else if(!facingRight)
+        {
+            if(pos == 0)
+                return true;
+        }
         return false;
     }
     private void move()
@@ -25,12 +30,11 @@ public class Robot
         {
             hall[pos] = hall[pos] - 1;
         }
-        else if(hall[pos] == 0)
+        if(hall[pos] == 0)
         {
             if(forwardMoveBlocked())
             {
-                facingRight = false;
-                pos = pos - 1;
+                facingRight = !facingRight;
             }
             else
             {
@@ -48,6 +52,7 @@ public class Robot
         {
             move();
             moves++;
+            //System.out.println("pos = " + pos + " trash = " + hall[pos] + " right = " + facingRight);
         }
         return moves;
     }
