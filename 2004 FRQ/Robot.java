@@ -39,8 +39,8 @@ public class Robot
             else
             {
                 if (facingRight)
-					pos++;
-				else
+		    pos++;
+		else
                     pos--;
             }
         }
