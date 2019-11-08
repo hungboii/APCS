@@ -1,4 +1,4 @@
-public class BattleshipTester
+public class gridTester
 {
     public static void main(String[] args)
     {        

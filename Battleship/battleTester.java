@@ -5,13 +5,15 @@ public class battleTester
         MakeBoard realGrid = new MakeBoard();
         Battleship playGame = new Battleship(realGrid.getGrid());
 
-        while(gameisOver == false)
+        playGame.printBoard();
+
+        while(playGame.gameisOver() == false)
         {    
-            playgame.fire();
-            playgame.printBoard(); 
+            playGame.fire();
+            playGame.printBoard(); 
         }
         
-        if(playGame.gameisOver == true)
+        if(playGame.gameisOver() == true)
             System.out.print("Congrats, you won!");
     }
 }
