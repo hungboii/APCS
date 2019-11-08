@@ -4,7 +4,7 @@ public class RobotTester
     {
         int[] hall = {1, 1, 2, 2};
         
-        Robot bot = new Robot(hall, 1, true);
-        System.out.println("The robot cleared the hall in " + bot.clearHall() + " moves.");
+        Robot Andrew = new Robot(hall, 1, true);
+        System.out.println("The robot cleared the hall in " + Andrew.clearHall() + " moves.");
     }
 }
