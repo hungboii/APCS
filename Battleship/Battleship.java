@@ -5,27 +5,25 @@ public class Battleship
     private String[][] boatGrid = new String[9][9];
     private String[][] hitGrid = new String[9][9];
     private int yCoords;
+    private int boatsLeft;
 
     public Battleship(String[][] dummy)
     {
         boatGrid = dummy;
+        boatsLeft = 4;
 
         for(String[] rows : hitGrid)
         {
             Arrays.fill(rows, " ");
         }
-        for (int i = 0; i < hitGrid.length; i++)                       
+        for (int i = 1; i < hitGrid.length; i++) //fills the top row of the display grid with letter                     
             hitGrid[0][i] = (char)(64 + i) + ""; 
 
-        for (int i = 1; i < hitGrid.length; i++)                        
+        for (int i = 1; i < hitGrid.length; i++) //fills the first column of the display grid with number                       
             hitGrid[i][0] = i + "";
     }
     public void fire()
-    {
-        int i = 0;
-        if(i == 0)
-            System.out.println("Enter coordinates in this format - A1");
-        i++;
+    {  
         Scanner kb = new Scanner(System.in);
         System.out.print("Pick a place to fire on: ");
         String coords = kb.nextLine();
@@ -72,11 +70,41 @@ public class Battleship
 
         System.out.println();
 
-        if(boatGrid[xCoords][yCoords].equals("4"))
+        if(boatGrid[xCoords][yCoords].equals("4")) //check if each boat is hit
         {
             boatGrid[xCoords][yCoords] = "-1";
             System.out.println("hit");
             System.out.println();
+            
+            if(isShipSunk("4"))
+                System.out.println("You sunk a boat! Boats left: " + boatsLeft);
+        }
+        if(boatGrid[xCoords][yCoords].equals("3"))
+        {
+            boatGrid[xCoords][yCoords] = "-1";
+            System.out.println("hit");
+            System.out.println();
+
+            if(isShipSunk("3"))
+                System.out.println("You sunk a boat! Boats left: " + boatsLeft);
+        }
+        if(boatGrid[xCoords][yCoords].equals("2"))
+        {
+            boatGrid[xCoords][yCoords] = "-1";
+            System.out.println("hit");
+            System.out.println();
+
+            if(isShipSunk("2"))
+                System.out.println("You sunk a boat! Boats left: " + boatsLeft);
+        }
+        if(boatGrid[xCoords][yCoords].equals("1"))
+        {
+            boatGrid[xCoords][yCoords] = "-1";
+            System.out.println("hit");
+            System.out.println();
+    
+            if(isShipSunk("1"))
+                System.out.println("You sunk a boat! Boats left: " + boatsLeft);
         }
         else if(boatGrid[xCoords][yCoords].equals("0"))
         {
@@ -84,6 +112,21 @@ public class Battleship
             System.out.println("miss");
             System.out.println();
         }
+        
+        System.out.println();
+    }
+    private boolean isShipSunk(String boatNumber)
+    {
+        for (int i = 1; i < boatGrid.length;i++)
+        	{
+		    	for (int j = 1; j < boatGrid.length;j++)
+		    	{
+		        	if (boatGrid[i][j].equals(boatNumber))
+					    return false;
+		    	}
+        }
+        boatsLeft--;
+		return true;	
     }
     public void printBoard()
     {
@@ -103,14 +146,8 @@ public class Battleship
     }
     public boolean gameisOver()
     {
-        for(int i = 0; i < boatGrid.length; i++)
-        {
-            for(int j = 0; j < boatGrid.length; j++)
-            {
-                if(boatGrid[i][j].equals("4"))
-                    return false;
-            }
-        }
+        if(boatsLeft != 0)
+            return false;
         return true;
     }
 }

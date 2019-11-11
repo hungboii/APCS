@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - MatrixTester",
+            "request": "launch",
+            "mainClass": "MatrixTester",
+            "projectName": "APCS_32261d82"
+        }
+    ]
+}
