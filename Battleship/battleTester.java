@@ -3,16 +3,18 @@ public class battleTester
     public static void main(String[] args)
     {
         MakeBoard realGrid = new MakeBoard();
-        Battleship playGame = new Battleship(realGrid.getGrid(), 20);
+        Battleship playGame = new Battleship(realGrid.getGrid(), 35);
 
         playGame.printBoard();
-        System.out.println("Enter coordinates in the format A1."); 
-        System.out.println("X is a hit and O is a miss.");
+        System.out.println("Enter coordinates in the format A1. X is a hit and O is a miss."); 
+        System.out.println("Moves left: 35");
+
 
         while(playGame.gameisOver() == false)
         {    
             playGame.fire();
             System.out.println("Moves left: " + playGame.getMoves());
+            System.out.println();
             try { //put a small delay between printing hit/miss and printing board so player can see clearly if hit/miss
                 Thread.sleep(1000); 
                 } catch (InterruptedException e) { }

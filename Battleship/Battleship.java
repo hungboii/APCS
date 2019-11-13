@@ -29,13 +29,13 @@ public class Battleship
         Scanner kb = new Scanner(System.in);
         System.out.print("Pick a place to fire on: ");
         String coords = kb.nextLine();
-        char[] sepCoords = coords.toCharArray();
+        char[] sepCoords = coords.toCharArray(); //seperates the coordinates into individual characters
         String yCords = sepCoords[0] + "";
         String xCords = sepCoords[1] + "";
 
         int xCoords = Integer.parseInt(xCords);
 
-        switch(yCords)
+        switch(yCords) //converts the char into a number
         {
             case "a":
             case "A": 
@@ -134,7 +134,7 @@ public class Battleship
         boatsLeft--;
 		return true;	
     }
-    public void printBoard()
+    public void printBoard() //grid just to show where hit/miss
     {
         for(int i = 0; i < boatGrid.length; i++)
         {
@@ -150,16 +150,11 @@ public class Battleship
             System.out.println();
         }
     }
-    public boolean gameisWon()
-    {
-        
-        return false;
-    }
     public boolean gameisOver()
     {
         if(moves == 0) //lose condition
         {
-            System.out.print("Imagine losing to the bot lmao");
+            System.out.print("Game Over. Imagine losing to a bot lmao");
             return true;
         }
         if(boatsLeft == 0) //win condition

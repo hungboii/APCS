@@ -34,7 +34,7 @@ public class MakeBoard
             if(xCoords <= 4 && isSpace())
             {
                 for(int i = 0; i < boatlength; i++)
-                    grid[yCoords][xCoords + i] = boatsLeft + "";
+                    grid[yCoords][xCoords + i] = boatsLeft + ""; //each boat is a different number on the grid
                 boatsLeft--;
             }
             else if(xCoords > 4 && yCoords <= 4 && isSpace())
