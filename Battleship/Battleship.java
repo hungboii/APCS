@@ -6,17 +6,19 @@ public class Battleship
     private String[][] hitGrid = new String[9][9];
     private int yCoords;
     private int boatsLeft;
+    private int moves;
 
-    public Battleship(String[][] dummy)
+    public Battleship(String[][] dummy, int numMoves)
     {
         boatGrid = dummy;
         boatsLeft = 4;
+        moves = numMoves;
 
         for(String[] rows : hitGrid)
         {
             Arrays.fill(rows, " ");
         }
-        for (int i = 1; i < hitGrid.length; i++) //fills the top row of the display grid with letter                     
+        for (int i = 1; i < hitGrid.length; i++) //fills the top row of the display grid with letters                     
             hitGrid[0][i] = (char)(64 + i) + ""; 
 
         for (int i = 1; i < hitGrid.length; i++) //fills the first column of the display grid with number                       
@@ -67,9 +69,13 @@ public class Battleship
             case "H": 
                 yCoords = 8;
         }
-
         System.out.println();
 
+        if(boatGrid[xCoords][yCoords].equals("-5") || boatGrid[xCoords][yCoords].equals("-1")) //check if player already shot in this place
+        {
+            System.out.println("You already shot there, you monkey. Pick a different place.");
+            fire();
+        }
         if(boatGrid[xCoords][yCoords].equals("4")) //check if each boat is hit
         {
             boatGrid[xCoords][yCoords] = "-1";
@@ -112,18 +118,18 @@ public class Battleship
             System.out.println("miss");
             System.out.println();
         }
-        
-        System.out.println();
     }
-    private boolean isShipSunk(String boatNumber)
+    public int getMoves()
     {
-        for (int i = 1; i < boatGrid.length;i++)
-        	{
-		    	for (int j = 1; j < boatGrid.length;j++)
-		    	{
-		        	if (boatGrid[i][j].equals(boatNumber))
-					    return false;
-		    	}
+        return --moves;
+    }
+    private boolean isShipSunk(String boatNumber) //check if the boat number just hit is on any square
+    {
+        for (int i = 1; i < boatGrid.length; i++) 
+        {
+		    for (int j = 1; j < boatGrid.length; j++)
+		        if (boatGrid[i][j].equals(boatNumber))
+					return false;
         }
         boatsLeft--;
 		return true;	
@@ -144,10 +150,23 @@ public class Battleship
             System.out.println();
         }
     }
+    public boolean gameisWon()
+    {
+        
+        return false;
+    }
     public boolean gameisOver()
     {
-        if(boatsLeft != 0)
-            return false;
-        return true;
+        if(moves == 0) //lose condition
+        {
+            System.out.print("Imagine losing to the bot lmao");
+            return true;
+        }
+        if(boatsLeft == 0) //win condition
+        {
+            System.out.print("Congrats, you win!");
+            return true;
+        }
+        return false;
     }
 }
