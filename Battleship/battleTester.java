@@ -3,11 +3,11 @@ public class battleTester
     public static void main(String[] args)
     {
         MakeBoard realGrid = new MakeBoard();
-        Battleship playGame = new Battleship(realGrid.getGrid(), 20);
+        Battleship playGame = new Battleship(realGrid.getGrid(), 30);
 
         playGame.printBoard();
-        System.out.println("Enter coordinates in the format A1."); 
-        System.out.println("X is a hit and O is a miss.");
+        System.out.println("Enter coordinates in the format A1. X is a hit and O is a miss."); 
+        System.out.println("Moves left: 35. Boats left: 4");
 
         while(playGame.gameisOver() == false)
         {    
@@ -24,3 +24,5 @@ public class battleTester
 //to do:
 //make it look cleaner - line spcacing
 //maybe do different size boats? last priority tho
+//different difficulties?
+//hits count as moves?
