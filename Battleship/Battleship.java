@@ -2,16 +2,16 @@ import java.util.Scanner;
 import java.util.Arrays;
 public class Battleship
 {
-    private String[][] boatGrid = new String[9][9];
+    private static String[][] shipGrid = new String[9][9];
     private String[][] hitGrid = new String[9][9];
     private int yCoords;
-    private int boatsLeft;
+    private int shipsLeft;
     private int moves;
 
     public Battleship(String[][] dummy, int numMoves)
     {
-        boatGrid = dummy;
-        boatsLeft = 4;
+        shipGrid = dummy;
+        shipsLeft = 4;
         moves = numMoves;
 
         for(String[] rows : hitGrid)
@@ -71,78 +71,103 @@ public class Battleship
         }
         System.out.println();
 
-        if(boatGrid[xCoords][yCoords].equals("-5") || boatGrid[xCoords][yCoords].equals("-1")) //check if player already shot in this place
+        if(shipGrid[xCoords][yCoords].equals("-5") || shipGrid[xCoords][yCoords].equals("-1")) //check if player already shot in this place
         {
             System.out.println("You already shot there, you monkey. Pick a different place.");
             fire();
         }
-        if(boatGrid[xCoords][yCoords].equals("4")) //check if each boat is hit
+        if(shipGrid[xCoords][yCoords].equals("5"))
         {
-            boatGrid[xCoords][yCoords] = "-1";
-            System.out.println("hit");
+            shipGrid[xCoords][yCoords] = "-1";
+            System.out.print("hit! ");
+    
+            if(isShipSunk("5"))
+            {
+                System.out.println("You sunk the Cruiser.");
+                shipsLeft--;
+            }
             System.out.println();
+        }
+        if(shipGrid[xCoords][yCoords].equals("4")) //check if each ship is hit
+        {
+            shipGrid[xCoords][yCoords] = "-1";
+            System.out.print("hit! ");
             
             if(isShipSunk("4"))
-                System.out.println("You sunk a boat! Boats left: " + boatsLeft);
-        }
-        if(boatGrid[xCoords][yCoords].equals("3"))
-        {
-            boatGrid[xCoords][yCoords] = "-1";
-            System.out.println("hit");
+            {
+                System.out.println("You sunk the Battleship.");
+                shipsLeft--;
+            }
             System.out.println();
+        }
+        if(shipGrid[xCoords][yCoords].equals("3"))
+        {
+            shipGrid[xCoords][yCoords] = "-1";
+            System.out.print("hit! ");
 
             if(isShipSunk("3"))
-                System.out.println("You sunk a boat! Boats left: " + boatsLeft);
-        }
-        if(boatGrid[xCoords][yCoords].equals("2"))
-        {
-            boatGrid[xCoords][yCoords] = "-1";
-            System.out.println("hit");
+            {
+                System.out.println("You sunk the Submarine.");
+                shipsLeft--;
+            }
             System.out.println();
+        }
+        if(shipGrid[xCoords][yCoords].equals("2"))
+        {
+            shipGrid[xCoords][yCoords] = "-1";
+            System.out.print("hit! ");
 
             if(isShipSunk("2"))
-                System.out.println("You sunk a boat! Boats left: " + boatsLeft);
-        }
-        if(boatGrid[xCoords][yCoords].equals("1"))
-        {
-            boatGrid[xCoords][yCoords] = "-1";
-            System.out.println("hit");
+            {
+                System.out.println("You sunk the Patrol Boat.");
+                shipsLeft--;
+            }
             System.out.println();
-    
-            if(isShipSunk("1"))
-                System.out.println("You sunk a boat! Boats left: " + boatsLeft);
         }
-        else if(boatGrid[xCoords][yCoords].equals("0"))
+        else if(shipGrid[xCoords][yCoords].equals("0"))
         {
-            boatGrid[xCoords][yCoords] = "-5";
+            shipGrid[xCoords][yCoords] = "-5";
             System.out.println("miss");
             System.out.println();
+            moves--;
         }
     }
     public int getMoves()
     {
-        return --moves;
+        return moves;
     }
-    private boolean isShipSunk(String boatNumber) //check if the boat number just hit is on any square
+    private boolean isShipSunk(String shipNumber) //check if the ship number just hit is on any square
     {
-        for (int i = 1; i < boatGrid.length; i++) 
+        for (int i = 1; i < shipGrid.length; i++) 
         {
-		    for (int j = 1; j < boatGrid.length; j++)
-		        if (boatGrid[i][j].equals(boatNumber))
+		    for (int j = 1; j < shipGrid.length; j++)
+		        if (shipGrid[i][j].equals(shipNumber))
 					return false;
         }
-        boatsLeft--;
 		return true;	
+    }
+    public void printShipsLeft()
+    {
+        String[] shipNames = {"Patrol Boat", "Submarine", "Destroyer", "Battleship", "Carrier"};
+        System.out.println("Ships left:");
+        for(int i = 2; i < 6; i++)
+        {
+            if(isShipSunk(i + ""))
+                System.out.print("[X] ");
+            else
+                System.out.print("[ ] ");
+            System.out.println(shipNames[i]);
+        }
     }
     public void printBoard() //grid just to show where hit/miss
     {
-        for(int i = 0; i < boatGrid.length; i++)
+        for(int i = 0; i < shipGrid.length; i++)
         {
-            for(int j = 0; j < boatGrid.length; j++)
+            for(int j = 0; j < shipGrid.length; j++)
             {
-                if(boatGrid[i][j].equals("-1"))
+                if(shipGrid[i][j].equals("-1"))
                     System.out.print("[X]");
-                else if(boatGrid[i][j].equals("-5"))
+                else if(shipGrid[i][j].equals("-5"))
                     System.out.print("[O]");
                 else
                     System.out.print("[" + hitGrid[i][j] + "]");
@@ -150,18 +175,20 @@ public class Battleship
             System.out.println();
         }
     }
-    public boolean gameisOver()
+    public boolean gameisLost()
     {
         if(moves == 0) //lose condition
-        {
-            System.out.print("Game Over. Imagine losing to a bot lmao");
             return true;
-        }
-        if(boatsLeft == 0) //win condition
-        {
-            System.out.print("Congrats, you win!");
-            return true;
-        }
         return false;
+    }
+    public boolean gameisWon()
+    {
+        if(shipsLeft == 0) //win condition
+            return true;
+        return false;
+    }
+    public static String[][] getBoard()
+    {
+        return shipGrid;
     }
 }
