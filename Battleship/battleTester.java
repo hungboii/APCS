@@ -8,7 +8,7 @@ public class battleTester
 
         playGame.printBoard();
         System.out.println("Enter coordinates in the format A1. X is a hit and O is a miss."); 
-        System.out.println("Misses left: 25."); 
+        System.out.println("Misses left: 25"); 
 
         while(playGame.gameisWon() == false && playGame.gameisLost() == false)
         {    

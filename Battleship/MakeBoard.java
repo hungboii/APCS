@@ -24,7 +24,7 @@ public class MakeBoard
 
         setBoats();
     }
-    private void setBoats() //randomly places the boats
+    private void setBoats() //"randomly" places the boats
     {
         int j = 0;
         while(boatsLeft > 0)
@@ -32,21 +32,21 @@ public class MakeBoard
             xCoords = (int)(Math.random() * 9) + 1;
             yCoords = (int)(Math.random() * 9) + 1;
 
-            if(xCoords <= 4 && isSpace(j))
+            if(xCoords <= 4 && isSpace(j)) //this makes it so if the boat is on the left side of the board, it will face right
             {
                 for(int i = 0; i < boatLength[j]; i++)
                     grid[yCoords][xCoords + i] = boatLength[j] + "";
                 boatsLeft--;
                 j++;
             }
-            else if(xCoords > 4 && yCoords <= 4 && isSpace(j))
+            else if(xCoords > 4 && yCoords <= 4 && isSpace(j)) //if in the top right, will face down
             {
                 for(int i = 0; i < boatLength[j]; i++)
                     grid[yCoords + i][xCoords] = boatLength[j] + "";
                 boatsLeft--;
                 j++;
             }
-            else if(xCoords > 4 && yCoords > 4 && isSpace(j))
+            else if(xCoords > 4 && yCoords > 4 && isSpace(j)) //if in the bottom right, will face up
             {
                 for(int i = 0; i < boatLength[j]; i++)
                     grid[yCoords - i][xCoords] = boatLength[j] + "";
