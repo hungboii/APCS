@@ -72,6 +72,9 @@ public class Battleship
             case "i":
             case "I":
                 yCoords = 9;
+                break;
+            default:
+                yCoords = 69420;
         }
         System.out.println();
 
