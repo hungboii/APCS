@@ -2,8 +2,8 @@ import java.util.Scanner;
 import java.util.Arrays;
 public class Battleship
 {
-    private static String[][] shipGrid = new String[9][9];
-    private String[][] hitGrid = new String[9][9];
+    private static String[][] shipGrid = new String[10][10];
+    private String[][] hitGrid = new String[10][10];
     private int yCoords;
     private int shipsLeft;
     private int moves;
@@ -11,7 +11,7 @@ public class Battleship
     public Battleship(String[][] dummy, int numMoves)
     {
         shipGrid = dummy;
-        shipsLeft = 4;
+        shipsLeft = 5;
         moves = numMoves;
 
         for(String[] rows : hitGrid)
@@ -68,6 +68,10 @@ public class Battleship
             case "h":
             case "H": 
                 yCoords = 8;
+                break;
+            case "i":
+            case "I":
+                yCoords = 9;
         }
         System.out.println();
 
@@ -76,6 +80,18 @@ public class Battleship
             System.out.println("You already shot there, you monkey. Pick a different place.");
             fire();
         }
+        if(shipGrid[xCoords][yCoords].equals("6"))
+        {
+            shipGrid[xCoords][yCoords] = "-1";
+            System.out.print("hit! ");
+    
+            if(isShipSunk("6"))
+            {
+                System.out.println("You sunk the Destroyer.");
+                shipsLeft--;
+            }
+            System.out.println();
+        }
         if(shipGrid[xCoords][yCoords].equals("5"))
         {
             shipGrid[xCoords][yCoords] = "-1";
@@ -83,7 +99,7 @@ public class Battleship
     
             if(isShipSunk("5"))
             {
-                System.out.println("You sunk the Cruiser.");
+                System.out.println("You sunk the Carrier.");
                 shipsLeft--;
             }
             System.out.println();
@@ -148,9 +164,9 @@ public class Battleship
     }
     public void printShipsLeft()
     {
-        String[] shipNames = {"Patrol Boat", "Submarine", "Destroyer", "Battleship", "Carrier"};
+        String[] shipNames = {"", "", "Patrol Boat", "Submarine", "Battleship", "Carrier", "Destroyer"};
         System.out.println("Ships left:");
-        for(int i = 2; i < 6; i++)
+        for(int i = 2; i < 7; i++)
         {
             if(isShipSunk(i + ""))
                 System.out.print("[X] ");

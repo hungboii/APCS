@@ -3,7 +3,7 @@ public class MakeBoard
 {
     private int xCoords;
     private int yCoords;
-    private String[][] grid = new String[9][9];
+    private String[][] grid = new String[10][10];
     private int[] boatLength = new int[5];
     private int boatsLeft;
 
@@ -20,7 +20,7 @@ public class MakeBoard
             grid[i][0] = i + "";
             
         boatLength = boats;
-        boatsLeft = 4;
+        boatsLeft = 5;
 
         setBoats();
     }
@@ -29,24 +29,24 @@ public class MakeBoard
         int j = 0;
         while(boatsLeft > 0)
         {
-            xCoords = (int)(Math.random() * 8) + 1;
-            yCoords = (int)(Math.random() * 8) + 1;
+            xCoords = (int)(Math.random() * 9) + 1;
+            yCoords = (int)(Math.random() * 9) + 1;
 
-            if(xCoords < 4 && isSpace(j))
+            if(xCoords <= 4 && isSpace(j))
             {
                 for(int i = 0; i < boatLength[j]; i++)
                     grid[yCoords][xCoords + i] = boatLength[j] + "";
                 boatsLeft--;
                 j++;
             }
-            else if(xCoords >= 4 && yCoords < 4 && isSpace(j))
+            else if(xCoords > 4 && yCoords <= 4 && isSpace(j))
             {
                 for(int i = 0; i < boatLength[j]; i++)
                     grid[yCoords + i][xCoords] = boatLength[j] + "";
                 boatsLeft--;
                 j++;
             }
-            else if(xCoords >= 4 && yCoords >= 4 && isSpace(j))
+            else if(xCoords > 4 && yCoords > 4 && isSpace(j))
             {
                 for(int i = 0; i < boatLength[j]; i++)
                     grid[yCoords - i][xCoords] = boatLength[j] + "";
@@ -57,7 +57,7 @@ public class MakeBoard
     }
     private boolean isSpace(int j) //checks if the boats overlap
     {
-        if(xCoords < 4)
+        if(xCoords <= 4)
         {
             for (int i = 0; i < boatLength[j]; i++) 
             {
@@ -65,7 +65,7 @@ public class MakeBoard
                     return false;
             }
         }
-        else if(xCoords >= 4 && yCoords < 4)
+        else if(xCoords > 4 && yCoords <= 4)
         {
             for (int i = 0; i < boatLength[j]; i++)
             {
@@ -73,7 +73,7 @@ public class MakeBoard
                     return false;
             }
         }
-        else if(xCoords >= 4 && yCoords >= 4)
+        else if(xCoords > 4 && yCoords > 4)
         {
             for (int i = 0; i < boatLength[j]; i++)
             {
