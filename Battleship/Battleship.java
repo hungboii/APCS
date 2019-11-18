@@ -74,7 +74,7 @@ public class Battleship
                 yCoords = 9;
                 break;
             default:
-                yCoords = 69420;
+                yCoords = -1;
         }
         System.out.println();
 

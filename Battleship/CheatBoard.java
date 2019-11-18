@@ -1,4 +1,4 @@
-public class CheatBoard //this is to print to board with the ships on it after the player loses
+public class CheatBoard //this is to print to board with the ships on it for you or after the player loses
 {
     public void printBoard()
     {        
