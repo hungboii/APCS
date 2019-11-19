@@ -1,5 +1,5 @@
 import java.util.Arrays;
-public class AscendDescend
+public class killme
 {
     public static void main(String[] args)
     {
@@ -27,6 +27,7 @@ public class AscendDescend
         }
 
         System.out.println("Ascend    Descend");
+        System.out.println();
         for(int j = 0; j < ssAscend.length; j++)
             System.out.println(ssAscend[j] + spaces[j] + ssDescend[j]);
     }

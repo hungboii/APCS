@@ -14,6 +14,8 @@ public class AscendDescend
         }
 
         System.out.println("Ascend" + "\t" + "Descend");
+        System.out.println();
+        
         for(int j = 0; j < ssAscend.length; j++)
             System.out.println(ssAscend[j] + "\t" + ssDescend[j]);
     }
