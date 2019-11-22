@@ -39,5 +39,4 @@ public class battleTester
 }
 //to do:
 //different difficulties?
-//winning w/ zero moves left still prints loss message - change gameisLost to false after winning? 
 //change Xs to smaller/easier to see character after sinking?

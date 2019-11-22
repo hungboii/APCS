@@ -28,6 +28,7 @@ public class Battleship
     {  
         Scanner kb = new Scanner(System.in);
         System.out.print("Pick a place to fire on: ");
+
         String coords = kb.nextLine();
         char[] sepCoords = coords.toCharArray(); //seperates the coordinates into individual characters
         String yCords = sepCoords[0] + "";
@@ -83,7 +84,7 @@ public class Battleship
             System.out.println("You already shot there, you monkey. Pick a different place.");
             fire();
         }
-        if(shipGrid[xCoords][yCoords].equals("6"))
+        else if(shipGrid[xCoords][yCoords].equals("6"))
         {
             shipGrid[xCoords][yCoords] = "-1";
             System.out.print("hit! ");
@@ -95,7 +96,7 @@ public class Battleship
             }
             System.out.println();
         }
-        if(shipGrid[xCoords][yCoords].equals("5"))
+        else if(shipGrid[xCoords][yCoords].equals("5"))
         {
             shipGrid[xCoords][yCoords] = "-1";
             System.out.print("hit! ");
@@ -107,7 +108,7 @@ public class Battleship
             }
             System.out.println();
         }
-        if(shipGrid[xCoords][yCoords].equals("4")) //check if each ship is hit
+        else if(shipGrid[xCoords][yCoords].equals("4")) //check if each ship is hit
         {
             shipGrid[xCoords][yCoords] = "-1";
             System.out.print("hit! ");
@@ -119,7 +120,7 @@ public class Battleship
             }
             System.out.println();
         }
-        if(shipGrid[xCoords][yCoords].equals("3"))
+        else if(shipGrid[xCoords][yCoords].equals("3"))
         {
             shipGrid[xCoords][yCoords] = "-1";
             System.out.print("hit! ");
@@ -131,7 +132,7 @@ public class Battleship
             }
             System.out.println();
         }
-        if(shipGrid[xCoords][yCoords].equals("2"))
+        else if(shipGrid[xCoords][yCoords].equals("2"))
         {
             shipGrid[xCoords][yCoords] = "-1";
             System.out.print("hit! ");
