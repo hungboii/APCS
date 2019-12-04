@@ -11,7 +11,7 @@ public class SloppyRobot extends Robot
         if (moveCount > 0 && moveCount % 3 == 0)
         {
             getHall()[getPosition()] = getHall()[getPosition()] + 1;
-            //System.out.println("oops");
+            System.out.println("oops");
         }
         if(getHall()[(getPosition())] > 0)
         {

@@ -52,7 +52,7 @@ public class Robot
         {
             move();
             moves++;
-            //System.out.println("pos = " + pos + " trash = " + hall[pos] + " right = " + facingRight);
+            System.out.println("pos = " + pos + " trash = " + hall[pos] + " right = " + facingRight);
         }
         return moves;
     }
