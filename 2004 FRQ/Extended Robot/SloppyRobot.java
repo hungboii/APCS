@@ -1,24 +1,24 @@
 public class SloppyRobot extends Robot
 {
-    private int moveCount;
+    private int trashNumber;
 
     public SloppyRobot()
     {
-        moveCount = 0;
+        trashNumber = 0;
     }
     public void move()
     {
-        if (moveCount > 0 && moveCount % 3 == 0)
+        if (trashNumber > 0 && trashNumber % 3 == 0)
         {
             getHall()[getPosition()] = getHall()[getPosition()] + 1;
-            //System.out.println("oops");
+            System.out.println("oops");
         }
         if(getHall()[(getPosition())] > 0)
         {
-            getHall()[(getPosition())] = getHall()[(getPosition())] - 1;
-            moveCount++;
+            getHall()[getPosition()] = getHall()[getPosition()] - 1;
+            trashNumber++;
         }
-        if(getHall()[(getPosition())] == 0)
+        if(getHall()[getPosition()] == 0)
         {
             if(forwardMoveBlocked())
             {
@@ -30,7 +30,7 @@ public class SloppyRobot extends Robot
 		            setPosition(getPosition() + 1);
 		        else
                     setPosition(getPosition() - 1);
-                moveCount++;
+                trashNumber++;
             }
         }
     }
