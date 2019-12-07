@@ -19,44 +19,37 @@ public class testAnimation
       
         try {Thread.sleep(400);} catch (Exception e) {}
 
-        int i = 1;
-        while(i > 0)
+        g.setColor(new Color(135, 206, 250));
+        g.fillRect(0, 0, 400, 500);
+
+        for(int i = 1; i > 0; i++)
         {
-            if(i % 2 == 0)
+            if(i % 4 == 1)
                 g.setColor(Color.WHITE);
-            if(i % 2 == 1)
-                g.setColor(Color.BLUE);
+                g.fillOval(200, 150, 10, 10);
+                g.setColor(new Color(135,206,250));
+                g.fillOval(200, 250, 10, 10);
+                // g.fillOval(200, 300, 10, 10);
 
-            g.fillOval(195, 140, 10, 10);
+            if(i % 4 == 2)
+                g.setColor(Color.WHITE);
+                g.fillOval(200, 250, 10, 10);
+                g.setColor(new Color(135,206,250));
+                g.fillOval(200, 350, 10, 10);
 
-            g.fillOval(195, 205, 10, 10);
-            g.fillOval(245, 205, 10, 10);
-            g.fillOval(145, 205, 10, 10);
+            if(i % 4 == 3)
+                g.setColor(Color.WHITE);
+                g.fillOval(200, 350, 10, 10);
+                g.setColor(new Color(135,206,250));
+                g.fillOval(200, 450, 10, 10);
 
-            g.fillOval(195, 280, 10, 10);
-            g.fillOval(130, 280, 10, 10);
-            g.fillOval(260, 280, 10, 10);
+            if(i % 4 == 0)
+                g.setColor(Color.WHITE);
+                g.fillOval(200, 450, 10, 10);
+                // g.setColor(new Color(135,206,250));
+                // g.fillOval(200, 300, 10, 10);
 
-            g.fillOval(195, 355, 10, 10);
-            g.fillOval(115, 355, 10, 10);
-            g.fillOval(275, 355, 10, 10);
-
-            g.fillOval(195, 140, 10, 10);
-
-            g.fillOval(195, 205, 10, 10);
-            g.fillOval(245, 205, 10, 10);
-            g.fillOval(145, 205, 10, 10);
-
-            g.fillOval(195, 280, 10, 10);
-            g.fillOval(130, 280, 10, 10);
-            g.fillOval(260, 280, 10, 10);
-
-            g.fillOval(195, 355, 10, 10);
-            g.fillOval(115, 355, 10, 10);
-            g.fillOval(275, 355, 10, 10);
-
-            try {Thread.sleep(400);} catch (Exception e) {}
-            i++;
+            try {Thread.sleep(500);} catch (Exception e) {}
         }
    }
 }

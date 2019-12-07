@@ -47,6 +47,10 @@ public class ChristmasTree
         g.setColor(new Color(150, 75, 0));
 
         g.fillRect(175, 375, 50, 75); //base/stump of tree  
+
+        g.setColor(Color.WHITE);
+
+        g.fillRect(0, 450, 400, 25); //snow on ground
         
         g.setColor(Color.YELLOW);
 
@@ -78,19 +82,34 @@ public class ChristmasTree
             g.fillOval(115, 355, 10, 10);
             g.fillOval(275, 355, 10, 10);
 
-            g.fillOval(195, 140, 10, 10);
+            if(i % 5 == 1)
+                g.setColor(Color.WHITE);
+                g.fillOval(50, 50, 10, 10);
+                g.setColor(new Color(135,206,250));
+                g.fillOval(50, 100, 10, 10);
 
-            g.fillOval(195, 205, 10, 10);
-            g.fillOval(245, 205, 10, 10);
-            g.fillOval(145, 205, 10, 10);
+            if(i % 5 == 2)
+                g.setColor(Color.WHITE);
+                g.fillOval(50, 100, 10, 10);
+                g.setColor(new Color(135,206,250));
+                g.fillOval(50, 200, 10, 10);                
+                g.fillOval(50, 50, 10, 10);
 
-            g.fillOval(195, 280, 10, 10);
-            g.fillOval(130, 280, 10, 10);
-            g.fillOval(260, 280, 10, 10);
+            if(i % 5 == 3)
+                g.setColor(Color.WHITE);
+                g.fillOval(50, 200, 10, 10);
+                g.setColor(new Color(135,206,250));
+                g.fillOval(50, 300, 10, 10);
 
-            g.fillOval(195, 355, 10, 10);
-            g.fillOval(115, 355, 10, 10);
-            g.fillOval(275, 355, 10, 10);
+            if(i % 5 == 4)
+                g.setColor(Color.WHITE);
+                g.fillOval(50, 300, 10, 10);
+                g.setColor(new Color(135,206,250));
+                g.fillOval(50, 440, 10, 10);
+
+            if(i % 5 == 0)
+                g.setColor(Color.WHITE);
+                g.fillOval(50, 440, 10, 10);
 
             try {Thread.sleep(400);} catch (Exception e) {}
             i++;
