@@ -61,11 +61,11 @@ public class ChristmasTree
         int i = 1;
         while(i > 0)
         {
-            if(i % 60 == 0)
-                g.setColor(Color.WHITE);
-            if(i % 60 == 20)
+            if(i % 90 >= 0 && i % 90 < 30)
+                g.setColor(new Color(218,112,214));
+            if(i % 90 >= 30 && i % 90 < 60)
                 g.setColor(Color.RED);
-            if(i % 60 == 59)
+            if(i % 90 >= 60)
                 g.setColor(Color.BLUE);
 
             g.fillOval(195, 140, 10, 10);
