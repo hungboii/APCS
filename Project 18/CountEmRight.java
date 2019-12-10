@@ -13,11 +13,10 @@ public class CountEmRight
             if(input.equals("exit"))
                 break;
             input = input.toUpperCase() + "andrew is bot";
-            String[] sp = input.split("s\\s+a");
-            // for(int i = 0, i < sp.length, i++)
-            //     System.out.println(sp[i]);
+            String[] sp = input.split("S\\s*A");            
             int number = sp.length - 1 ;
             System.out.println("There are " + number + " occurences.");
+            System.out.println();
         }
     }
 }
