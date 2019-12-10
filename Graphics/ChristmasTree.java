@@ -57,7 +57,9 @@ public class ChristmasTree
                 g.fillRect(0, 0, 500, 600); //get rid of the snow by wiping the screen clean 
                 drawTree(win, contentPane, g); //redraw tree after wiping screen
             }
-            try {Thread.sleep(10);} catch (Exception e) {}
+            try {
+                Thread.sleep(10);
+            } catch (Exception e) {}
             i++;
         }
     }
