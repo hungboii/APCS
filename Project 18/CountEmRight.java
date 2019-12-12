@@ -10,8 +10,10 @@ public class CountEmRight
         {
             System.out.print("Type in a sentence and press ENTER. ");
             input = kb.nextLine();
+
             if(input.equals("exit"))
                 break;
+                
             input = input.toUpperCase() + "andrew is bot";
             String[] sp = input.split("S\\s*A");            
             int number = sp.length - 1 ;
