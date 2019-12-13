@@ -16,7 +16,6 @@ public class DoubleEmRight
                 break;
                 
             String[] sp = input.split("\\s+"); //doesn't work for graphics bc no spaces for commas. find fix
-            //String[] sp = input.split("[\\W&&[^\\p{Punct}]]"); //split on all non-word characters except punctuation. but if no spaces btwn letters and number doesn't work. now that i think aobut it this is literally just spaces only. 
 
             // for(int j = 0; j < sp.length; j++)
             //      System.out.println(sp[j]);
