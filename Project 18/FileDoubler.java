@@ -1,14 +1,17 @@
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
+import java.io.*;
 
 public class FileDoubler
 {
     public static void main (String[] args) throws IOException
     {
         File myfile = new File("bruh.txt");
-        Scanner filereader = new Scanner(myfile);;
-        
+        Scanner filereader = new Scanner(myfile);
+        FileWriter fw = new FileWriter(args[0]);
+        PrintWriter output = new PrintWriter(fw);
+
         //try { Scanner filereader = new Scanner(myfile); }
         //catch(IOException e) { System.out.println("File not found error!"); }
         
@@ -21,7 +24,7 @@ public class FileDoubler
             for(int j = 0; j < chr.length; j++)
             {
                 if(chr[j] >= 48 && chr[j] <= 57) //if number
-                { 
+                {
                     number = chr[j] + "";
                     for(int k = 1; k < chr.length - j; k++)
                     {
@@ -30,17 +33,19 @@ public class FileDoubler
                         else //if no longer part of the number, double it
                         {
                             number = Integer.parseInt(number) * 2 + "";
-                            System.out.print(number);
+                            output.print(number);
                             number = "";
                             j = j + k; //skip to the end of the number
                             break;
                         }
                     }
                 }
-                System.out.print(chr[j]);
+                output.print(chr[j]);
             }
-            System.out.println();
-        } 
+            output.println();
+        }
         filereader.close();
+        fw.close();
+        output.close();
     }
 }
