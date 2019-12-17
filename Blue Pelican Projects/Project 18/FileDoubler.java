@@ -18,11 +18,14 @@ public class FileDoubler
         while (filereader.hasNext())
         {
             String line = filereader.nextLine();
+            line = line + " bruh";
             char[] chr = line.toCharArray();
             String number;
             
             for(int j = 0; j < chr.length; j++)
             {
+                if(j >= chr.length - 5)
+                    break;
                 if(chr[j] >= 48 && chr[j] <= 57) //if number
                 {
                     number = chr[j] + "";

@@ -16,15 +16,18 @@ public class DoubleEmRightv2
             if(input.equals("exit"))
                 break;
         
+            input = input + " bruh";
             char[] chr = input.toCharArray();
             String number;
             
             for(int j = 0; j < chr.length; j++)
             {
+                if(j >= chr.length - 5)
+                    break;
                 if(chr[j] >= 48 && chr[j] <= 57) //if number
                 { 
                     number = chr[j] + "";
-                    for(int k = 1; k < chr.length - j; k++)
+                    for(int k = 1; k < chr.length - j - 1; k++)
                     {
                         if(chr[j + k] >= 48 && chr[j + k] <= 57) //check if numbers next to it are part of original number
                             number = number + chr[j + k]  + "";
