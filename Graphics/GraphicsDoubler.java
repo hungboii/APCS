@@ -11,19 +11,31 @@ public class GraphicsDoubler
         Scanner filereader = new Scanner(myfile);
         FileWriter fw = new FileWriter(args[0]);
         PrintWriter output = new PrintWriter(fw);
-        int scale = Integer.parseInt(args[1]);
-        double percentage = scale / 100;
-        String[] blacklist = {"import", "Color", "sleep"};
+
+        double percentage = Double.parseDouble(args[1])/100;
+        String[] blacklist = {"import", "Color", "sleep", "Polygon"};
 
         //try { Scanner filereader = new Scanner(myfile); }
         //catch(IOException e) { System.out.println("File not found error!"); }
         
-        while (filereader.hasNext())
+        test: while (filereader.hasNext())
         {
             String line = filereader.nextLine();
+
+            if(line.contains("public class"))
+            {
+                output.println(line + "x2");
+                continue;
+            }
+
             for(String word : blacklist)
-                if(line.matches(word))
-                    output.print(line);
+            {
+                if(line.contains(word))
+                {
+                    output.println(line);
+                    continue test;
+                }
+            }
             char[] chr = line.toCharArray();
             String number;
             
@@ -38,7 +50,7 @@ public class GraphicsDoubler
                             number = number + chr[j + k]  + "";
                         else //if no longer part of the number, double it
                         {
-                            number = Integer.parseInt(number) * percentage + "";
+                            number = (int)(Integer.parseInt(number) * percentage) + "";
                             output.print(number);
                             number = "";
                             j = j + k; //skip to the end of the number
