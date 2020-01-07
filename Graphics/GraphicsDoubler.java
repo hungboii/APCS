@@ -13,29 +13,25 @@ public class GraphicsDoubler
         PrintWriter output = new PrintWriter(fw);
 
         double percentage = Double.parseDouble(args[1])/100;
-        String[] blacklist = {"import", "Color", "sleep", "Polygon"};
 
         //try { Scanner filereader = new Scanner(myfile); }
         //catch(IOException e) { System.out.println("File not found error!"); }
         
-        test: while (filereader.hasNext())
+        while (filereader.hasNext())
         {
             String line = filereader.nextLine();
 
-            if(line.contains("public class"))
+            if(line.matches(".*public class.*"))
             {
                 output.println(line + "x2");
                 continue;
             }
-
-            for(String word : blacklist)
+            if(line.matches(".*import.*|.*Color.*|.*sleep.*|.*Polygon.*"))
             {
-                if(line.contains(word))
-                {
-                    output.println(line);
-                    continue test;
-                }
+                output.println(line);
+                continue;
             }
+
             char[] chr = line.toCharArray();
             String number;
             
