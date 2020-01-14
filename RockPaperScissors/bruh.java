@@ -17,7 +17,7 @@ public class bruh
 
             RockPaperScissors newGame  = new RockPaperScissors(playerChoice);
             System.out.println(newGame);
-            System.out.println(newGame.determineWinner());
+            System.out.println(newGame.determineWinner2());
             System.out.println("");
             System.out.print("Do you want to play again? ");
 
