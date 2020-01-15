@@ -1,18 +1,18 @@
 import java.util.Scanner;
 import static java.lang.System.*;
 
-public class RockPaperScissors
+public class Roshambetter
 {
 	private String playChoice;
 	private String compChoice;
 
-	public RockPaperScissors(String player)
+	public Roshambetter(String player)
 	{
         String[] choices = {"R", "P", "S"};
         playChoice = player;
         compChoice = choices[(int)(Math.random() * 3)];  
     }
-    public RockPaperScissors()
+    public Roshambetter()
 	{
         this("");
     }
