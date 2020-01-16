@@ -12,8 +12,8 @@ public class Roshambest
 	public Roshambest(int player, String weapon)
 	{
         choices = new int[] {3, 4, 5}; //1 is rock, 2 is paper, 3 is scissors for player
-        weapons = new String[] {"P", "R", "S"};
-        playChoice = player;
+        weapons = new String[] {"P", "R", "S"}; //if subract paper loses to scissors = 0, rock loses to paper = 2, scisscors loses to rock = 4
+        playChoice = player; //if subtract computer - player rock beats scissors = 1, paper beats rock = 2, scissors bEATS PAPER = 4
         compChoice = choices[(int)(Math.random() * 3)];  
         weepon = weapon;
     }
