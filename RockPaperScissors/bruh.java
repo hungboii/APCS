@@ -11,8 +11,7 @@ public class bruh
             int number = 0;
 
             String choices = "RPS";
-            
-            number = choices.indexOf(playerChoice) + 1;
+            number = choices.indexOf(playerChoice);
 
             // if(playerChoice.equals("R"))
             //     number = 1;
@@ -23,16 +22,16 @@ public class bruh
 
             if(!(playerChoice.equals("R")||playerChoice.equals("P")||playerChoice.equals("S")))
             {
-                System.out.println("please do not break my program.");
+                System.out.println("please pick a real option. ");
                 continue;
             }
 
             //RockPaperScissors newGame  = new RockPaperScissors(playerChoice);
-            Roshambest newGame  = new Roshambest(number, playerChoice);
+            Roshambest newGame  = new Roshambest(number);
             System.out.println(newGame);
             System.out.println(newGame.determineWinner2());
             System.out.println("");
-            System.out.print("Do you want to play again? ");
+            System.out.print("Do you want to play again? (type y for yes, n for no) ");
 
             if(kb.next().equals("n"))
                 break;

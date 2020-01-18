@@ -14,7 +14,8 @@ public class Roshambetter
     }
     public Roshambetter()
 	{
-        this("");
+        playChoice = "";
+        compChoice = "";
     }
     // public String determineWinner()
 	// {
