@@ -1,5 +1,5 @@
 import java.util.Scanner;
-public class bruh
+public class PleaseGiveMeTheMultimeter
 {
     public static void main(String[] args)
     {

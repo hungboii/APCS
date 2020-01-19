@@ -5,15 +5,13 @@ public class Roshambest
 {
 	private int playChoice;
     private int compChoice;
-    private int[] choices = new int[3];
     private String[] weapons = new String[3];
 
 	public Roshambest(int player)
 	{
-        choices = new int[] {0, 1, 2};
         weapons = new String[] {"R", "P", "S"};
         playChoice = player;
-        compChoice = choices[(int)(Math.random() * 3)];  
+        compChoice = (int)(Math.random() * 3);  
     }
 	public String determineWinner2()
 	{
@@ -25,7 +23,6 @@ public class Roshambest
         
 		return winner[playChoice][compChoice]; 
 	}
-
 	public String toString()
 	{
         String output = "player had " + weapons[playChoice] + "\nComputer had " + weapons[compChoice];
