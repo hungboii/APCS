@@ -19,10 +19,10 @@ public class ArrayListGlitch
 
         System.out.println(ary);
         
-        for(Integer bruh : ary)
+        for(Integer number : ary)
         {
-            if(bruh % 2 == 0)
-                evens.add(bruh);
+            if(number % 2 == 0)
+                evens.add(number);
         }
 
         System.out.println(evens);
