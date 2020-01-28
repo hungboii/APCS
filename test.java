@@ -1,34 +1,32 @@
-import java.util.Scanner;
+import java.util.*;
+
 public class test
 {
-    public static void main (String[] args)
+    public static void main(String[] args)
     {
-        Scanner kb = new Scanner(System.in);
-        while(true)
+        ArrayList<Integer> ary = new ArrayList<Integer>();
+
+        ary.add(5);
+        ary.add(8);
+        ary.add(1);
+        ary.add(3);
+        ary.add(6);
+        ary.add(2);
+        ary.add(7);
+        ary.add(9);
+        ary.add(4);
+
+        System.out.println(ary);
+        
+        for(int i = 0; i < ary.size(); i++)
         {
-            System.out.print("Rock-Paper-Scissors - Pick your weapon [R, P, S]: ");
-            String playerChoice = kb.next();
-            
-            String choices = RPS;
-            
-            number = choices.indexOf(playerChoice) + 1;
-                
-            if(!(playerChoice.equals("R")||playerChoice.equals("P")||playerChoice.equals("S")))
+            if(ary.get(i) % 2 != 0)
             {
-                System.out.println("please do not break my program.");
-                continue;
+                ary.remove(i);
+                i--;
             }
-
-            //RockPaperScissors newGame  = new RockPaperScissors(playerChoice);
-            Roshambest newGame  = new Roshambest(number, playerChoice);
-            System.out.println(newGame);
-            System.out.println(newGame.determineWinner2());
-            System.out.println("");
-            System.out.print("Do you want to play again? ");
-
-            if(kb.next().equals("n"))
-                break;
-            System.out.println("");
         }
+        
+        System.out.println(ary);
     }
 }

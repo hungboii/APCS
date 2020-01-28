@@ -5,6 +5,7 @@ public class ArrayListGlitch
     public static void main(String[] args)
     {
         ArrayList<Integer> ary = new ArrayList<Integer>();
+        ArrayList<Integer> evens = new ArrayList<Integer>();
 
         ary.add(5);
         ary.add(8);
@@ -16,15 +17,26 @@ public class ArrayListGlitch
         ary.add(9);
         ary.add(4);
 
-        for(Integer bruh : ary)
-            System.out.print(bruh);
-
-        System.out.println();
+        System.out.println(ary);
         
-        for(int i = 0; i < ary.size(); i++)
+        for(Integer bruh : ary)
         {
-            if(ary.get(i) % 2 == 0)
-                System.out.print(ary.remove(i));
+            if(bruh % 2 == 0)
+                evens.add(bruh);
         }
+
+        System.out.println(evens);
+
+        //other method
+        // for(int i = 0; i < ary.size(); i++)
+        // {
+        //     if(ary.get(i) % 2 != 0)
+        //     {
+        //         ary.remove(i);
+        //         i--;
+        //     }
+        // }
+        
+        // System.out.println(ary);
     }
 }
