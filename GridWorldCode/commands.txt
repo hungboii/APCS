@@ -1,0 +1,3 @@
+Compile: javac -cp .;"C:/Users/Matthew Hung/Desktop/APCS/GridWorldCode/gridworld.jar" BugRunner.java
+
+Run: java -cp .;"C:/Users/Matthew Hung/Desktop/APCS/GridWorldCode/gridworld.jar" BugRunner
