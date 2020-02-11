@@ -6,34 +6,44 @@ import info.gridworld.world.*;
 
 public class CoronavirusRock extends Rock 
 {
-    private ArrayList<Integer> turnCounter;
-    private ArrayList<Actor> infected;
+    private ArrayList<Integer> turnCounter = new ArrayList<Integer>();
+    private ArrayList<Actor> infected = new ArrayList<Actor>();
 
     public CoronavirusRock()
     {
         setColor(Color.GREEN);
-        for (int i = 0; i < 50; i++) 
-            turnCounter.add(3);
-        
+        for (int i = 0; i < 100; i++) 
+            turnCounter.add(3);  
     }
-
-    public CoronavirusRock(Color rockColor)
+    public void getActorsFirst()
     {
-        setColor(rockColor);
+        infected = getGrid().getNeighbors(getLocation()); //need to figure out how to get actors near other infected actors. prob get location of infected and add those occupied adjacent locations and add them to the list?
     }
-
     public void getActors()
     {
-        infected = getOccupiedAdjacentLocations(getLocation()); //need to figure out how to get actors near other infected actors. prob get location of infected and add those occupied adjacent locations and add them to the list?
+        int origSize = infected.size();
+        System.out.println(origSize);
+        for(int i = 0; i < origSize; i++)
+        {
+            ArrayList<Actor> currentInfected = new ArrayList<Actor>();
+            currentInfected = getGrid().getNeighbors(infected.get(i).getLocation());
+            for(Actor hugh : currentInfected)
+            {
+                infected.add(hugh);
+            }
+        }
     }
 
     public void infectActors()
     {
         for(int i = 0; i < infected.size(); i++)
         {
+            infected.get(i).setColor(Color.GREEN);
             turnCounter.set(i, turnCounter.get(i) - 1); //start incubation period of virus
             if(turnCounter.get(i) == 0)
             {
+                //CoronavirusRock bruh = new CoronavirusRock();
+                //bruh.putSelfInGrid(infected.get(i).getGrid(), infected.get(i).getLocation());
                 infected.get(i).removeSelfFromGrid();
                 infected.remove(i);
                 turnCounter.remove(i);
@@ -44,11 +54,17 @@ public class CoronavirusRock extends Rock
     public void act()
     {
         if(infected == null)
-			getActors();
+            getActorsFirst();
         else if(infected.isEmpty())
-            getActors();
+        {
+            getActorsFirst();
+            System.out.println(infected.size());
+        }
         else
+        {
+            getActors();
             infectActors();
+        }
     }
 
 }
