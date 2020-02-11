@@ -4,29 +4,15 @@ public class test
 {
     public static void main(String[] args)
     {
-        ArrayList<Integer> ary = new ArrayList<Integer>();
+        ArrayList<Integer> turnCounter = new ArrayList<Integer>(50);
 
-        ary.add(5);
-        ary.add(8);
-        ary.add(1);
-        ary.add(3);
-        ary.add(6);
-        ary.add(2);
-        ary.add(7);
-        ary.add(9);
-        ary.add(4);
+        for (int i = 0; i < 50; i++) 
+            turnCounter.add(3);
 
-        System.out.println(ary);
-        
-        for(int i = 0; i < ary.size(); i++)
-        {
-            if(ary.get(i) % 2 != 0)
-            {
-                ary.remove(i);
-                i--;
-            }
-        }
-        
-        System.out.println(ary);
+        for(int j = 0; j < 50; j++)
+            turnCounter.set(j, turnCounter.get(j) - 1);
+
+        System.out.print(turnCounter);
+
     }
 }
