@@ -65,6 +65,6 @@ public class CoronavirusRock extends Rock
             getActors();
             infectActors();
         }
-    }
+    }   
 
 }
