@@ -1,5 +1,8 @@
 import java.awt.Color;
 import java.util.ArrayList;
+
+import javax.tools.DocumentationTool.Location;
+
 import info.gridworld.actor.*;
 import info.gridworld.grid.*;
 import info.gridworld.world.*;
@@ -22,14 +25,24 @@ public class CoronavirusRock extends Rock
     public void getActors()
     {
         int origSize = infected.size();
-        System.out.println(origSize);
+
         for(int i = 0; i < origSize; i++)
         {
-            ArrayList<Actor> currentInfected = new ArrayList<Actor>();
-            currentInfected = getGrid().getNeighbors(infected.get(i).getLocation());
-            for(Actor hugh : currentInfected)
+            ArrayList<Actor> newInfected = new ArrayList<Actor>();
+
+            try {
+                // info.gridworld.grid.Location virus = infected.get(i).getLocation();
+                // System.out.println(virus);
+                // newInfected = getGrid().getNeighbors(virus);
+                newInfected = getGrid().getNeighbors(infected.get(i).getLocation());
+            } catch (NullPointerException e) {
+                
+            }
+
+            for(Actor hugh : newInfected)
             {
-                infected.add(hugh);
+                if(!(hugh instanceof CoronavirusRock || infected.contains(hugh)))
+                    infected.add(hugh);
             }
         }
     }
@@ -38,13 +51,16 @@ public class CoronavirusRock extends Rock
     {
         for(int i = 0; i < infected.size(); i++)
         {
-            infected.get(i).setColor(Color.GREEN);
+            infected.get(i).setColor(Color.BLACK);
             turnCounter.set(i, turnCounter.get(i) - 1); //start incubation period of virus
             if(turnCounter.get(i) == 0)
             {
                 //CoronavirusRock bruh = new CoronavirusRock();
                 //bruh.putSelfInGrid(infected.get(i).getGrid(), infected.get(i).getLocation());
-                infected.get(i).removeSelfFromGrid();
+                try {
+                    infected.get(i).removeSelfFromGrid();
+                } catch (IllegalStateException e) {}
+
                 infected.remove(i);
                 turnCounter.remove(i);
                 i--;
@@ -58,7 +74,6 @@ public class CoronavirusRock extends Rock
         else if(infected.isEmpty())
         {
             getActorsFirst();
-            System.out.println(infected.size());
         }
         else
         {
