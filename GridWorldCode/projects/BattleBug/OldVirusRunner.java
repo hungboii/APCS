@@ -6,7 +6,7 @@ import info.gridworld.grid.Location;
 
 import java.awt.Color;
 
-public class CoronavirusRockRunner
+public class OldVirusRunner
 {
     public static void main(String[] args)
     {
@@ -17,7 +17,7 @@ public class CoronavirusRockRunner
         world.add(new Location(5, 5), new Rock(Color.PINK));
         world.add(new Location(1, 5), new Critter());
         world.add(new Location(7, 2), new Bug(Color.YELLOW));
-        world.add(new Location(4, 4), new CoronavirusRock());
+        world.add(new Location(4, 4), new OldVirusRock());
         world.show();
     }
 }

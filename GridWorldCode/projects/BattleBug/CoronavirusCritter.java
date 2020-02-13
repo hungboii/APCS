@@ -1,28 +1,29 @@
-import java.awt.Color;
-import java.util.ArrayList;
+//package info.gridworld.actor;
 
-import javax.tools.DocumentationTool.Location;
-
+import info.gridworld.grid.Location;
 import info.gridworld.actor.*;
 import info.gridworld.grid.*;
 import info.gridworld.world.*;
 
-public class CoronavirusRock extends Rock 
+import java.util.ArrayList;
+import java.awt.Color;
+
+public class CoronavirusCritter extends Critter 
 {
     private ArrayList<Integer> turnCounter = new ArrayList<Integer>();
     private ArrayList<Actor> infected = new ArrayList<Actor>();
 
-    public CoronavirusRock()
+    public CoronavirusCritter()
     {
         setColor(Color.GREEN);
         for (int i = 0; i < 100; i++) 
             turnCounter.add(3);  
     }
-    public void getActorsFirst()
+    public ArrayList<Actor> getActorsFirst()
     {
-        infected = getGrid().getNeighbors(getLocation()); //rocks don't die to virus? only carry it? or make a critter that moves
+        return getGrid().getNeighbors(getLocation());
     }
-    public void getActors()
+    public ArrayList<Actor> getActors()
     {
         int origSize = infected.size();
 
@@ -39,14 +40,17 @@ public class CoronavirusRock extends Rock
 
             for(Actor hugh : newInfected)
             {
-                if(!(hugh instanceof CoronavirusRock || infected.contains(hugh)))
+                if(!(hugh instanceof CoronavirusCritter || infected.contains(hugh)))
                     infected.add(hugh);
             }
         }
+        return infected;
+        
     }
 
-    public void infectActors()
+    public void processActors(ArrayList<Actor> actors)
     {
+
         for(int i = 0; i < infected.size(); i++)
         {
             infected.get(i).setColor(Color.BLACK);
@@ -65,19 +69,33 @@ public class CoronavirusRock extends Rock
             }
         }
     }
+
+    public Location selectMoveLocation(ArrayList<Location> locs)
+    {
+        int n = locs.size();
+        if (n == 0)
+            return getLocation();
+        int r = (int) (Math.random() * n);
+        return locs.get(r);    
+    }
+
+    public void makeMove(Location loc)
+    {
+        if (loc == null)
+            removeSelfFromGrid();
+        else
+            moveTo(loc);    
+    }
+
     public void act()
     {
         if(infected == null)
-            getActorsFirst();
+            infected = getActorsFirst();
         else if(infected.isEmpty())
         {
-            getActorsFirst();
+            infected = getActorsFirst();
         }
-        else
-        {
-            getActors();
-            infectActors();
-        }
+        super.act();
     }   
 
 }

@@ -1,28 +1,30 @@
-package info.gridworld.actor;
-
-import info.gridworld.grid.Location;
-
+import java.awt.Color;
 import java.util.ArrayList;
 
-public class VirusCritter extends Critter 
+import javax.tools.DocumentationTool.Location;
+
+import info.gridworld.actor.*;
+import info.gridworld.grid.*;
+import info.gridworld.world.*;
+
+public class OldVirusRock extends Rock 
 {
     private ArrayList<Integer> turnCounter = new ArrayList<Integer>();
     private ArrayList<Actor> infected = new ArrayList<Actor>();
 
-    public VirusCritter()
+    public OldVirusRock()
     {
         setColor(Color.GREEN);
         for (int i = 0; i < 100; i++) 
             turnCounter.add(3);  
     }
-    public ArrayList<Actor> getActorsFirst()
+    public void getActorsFirst()
     {
-        return getGrid().getNeighbors(getLocation()); //rocks don't die to virus? only carry it? or make a critter that moves
+        infected = getGrid().getNeighbors(getLocation()); //rocks don't die to virus? only carry it? or make a critter that moves
     }
-    public ArrayList<Actor> getActors()
+    public void getActors()
     {
-        ArrayList<Actor> virus = infected;
-        int origSize = virus.size();
+        int origSize = infected.size();
 
         for(int i = 0; i < origSize; i++)
         {
@@ -32,20 +34,18 @@ public class VirusCritter extends Critter
                 // info.gridworld.grid.Location virus = infected.get(i).getLocation();
                 // System.out.println(virus);
                 // newInfected = getGrid().getNeighbors(virus);
-                newInfected = getGrid().getNeighbors(virus.get(i).getLocation());
+                newInfected = getGrid().getNeighbors(infected.get(i).getLocation());
             } catch (NullPointerException e) {}
 
             for(Actor hugh : newInfected)
             {
-                if(!(hugh instanceof CoronavirusRock || virus.contains(hugh)))
-                    virus.add(hugh);
+                if(!(hugh instanceof OldVirusRock || infected.contains(hugh)))
+                    infected.add(hugh);
             }
         }
-        return virus;
-        
     }
 
-    public void processActors(ArrayList<Actor> infected)
+    public void infectActors()
     {
         for(int i = 0; i < infected.size(); i++)
         {
@@ -68,18 +68,15 @@ public class VirusCritter extends Critter
     public void act()
     {
         if(infected == null)
-            infected = getActorsFirst();
+            getActorsFirst();
         else if(infected.isEmpty())
         {
-            infected = getActorsFirst();
+            getActorsFirst();
         }
         else
         {
             getActors();
-            processActors(infected);
-            ArrayList<Location> moveLocs = getMoveLocations();
-            Location loc = selectMoveLocation(moveLocs);
-            makeMove(loc);
+            infectActors();
         }
     }   
 
