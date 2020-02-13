@@ -8,7 +8,11 @@ import info.gridworld.world.*;
 import java.util.ArrayList;
 import java.awt.Color;
 
-public class CoronavirusCritter extends Critter 
+//my critter has coronavirus but has a very strong immune system so he doesn't die from it. 
+//but he still spreads it to others who happen to have weak immune systems and when they get near the infected critter it gives them 3 turns to live. 
+//if anyone gets near those that are infected they get infected too.
+
+public class CoronavirusCritter extends Critter
 {
     private ArrayList<Integer> turnCounter = new ArrayList<Integer>();
     private ArrayList<Actor> infected = new ArrayList<Actor>();
