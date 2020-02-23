@@ -13,11 +13,7 @@ public class RockDropper extends Critter
     {
         Location currentLoc = getLocation();
 
-        if (loc == null || loc == currentLoc)
-        {
-            
-        }
-        else
+        if (!(loc == null || loc == currentLoc))
         {
             moveTo(loc);
             Rock rock = new Rock(getColor());
