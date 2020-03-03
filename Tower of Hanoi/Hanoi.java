@@ -1,22 +1,28 @@
 public class Hanoi
 {
-    private int moveCount;
-    private int origDisk;
-    public int move(int disks)
+    private static int moveCount;
+
+    public static void move(int disks, int fromPost, int sparePost, int toPost)
     {
-        if(moveCount == Math.pow(2, origDisk - 1)) //min number of moves
-            return 0;
-
-        else if(disks == 1)
+        if(disks == 1)
         {
-            move();
+            moveOne(disks, fromPost, toPost);
             moveCount++;
         }
-        else if(disks != 1)
+        else
         {
-            move(1);
+            move(disks - 1, fromPost, toPost, sparePost);
+            moveOne(disks, fromPost, toPost);
+            move(disks - 1, sparePost, fromPost, toPost);
             moveCount++;
         }
-
+    }
+    public static void moveOne(int disk, int fromPost, int toPost)
+    {
+        System.out.println("(Disk " + disk + ") " + fromPost + "--" + toPost);
+    }
+    public static int getMoves()
+    {
+        return moveCount;
     }
 }
