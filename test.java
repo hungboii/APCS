@@ -4,15 +4,17 @@ public class test
 {
     public static void main(String[] args)
     {
-        ArrayList<Integer> turnCounter = new ArrayList<Integer>(50);
+        
 
-        for (int i = 0; i < 50; i++) 
-            turnCounter.add(3);
+    }
+    public static void moveOne(int disk, int fromPost, int toPost)
+    {
+        int[] postOne = new String[disks]; 
+        int[] postTwo = new String[disks];
+        int[] postThree = new String[disks];
 
-        for(int j = 0; j < 50; j++)
-            turnCounter.set(j, turnCounter.get(j) - 1);
+        postOne.indexOf(disk);
 
-        System.out.print(turnCounter);
 
     }
 }
