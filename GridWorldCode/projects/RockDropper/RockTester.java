@@ -1,14 +1,14 @@
 import java.awt.Color;
-
 import info.gridworld.actor.ActorWorld;
-import info.gridworld.actor.Bug;
-import info.gridworld.actor.Rock;
+import info.gridworld.actor.*;
+import info.gridworld.grid.*;
 
 public class RockTester
 {
     public static void main(String[] args)
     {
-        ActorWorld world= new ActorWorld();
+        ActorWorld world = new ActorWorld();
+        world.setGrid(new BoundedGrid(40, 70));
         world.add(new RockDropper(Color.RED));
         world.add(new RockDropper(Color.GREEN));
         world.add(new RockDropper(Color.YELLOW));
