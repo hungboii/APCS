@@ -8,23 +8,23 @@ public class test
 
     }
     public static void moveOne(int disk, int fromPost, int toPost)
-    {
-        // ArrayList<Integer> postTwo = new ArrayList<Integer>();
-        // ArrayList<Integer> postThree = new ArrayList<Integer>();
-
-        // for(int i = 12; i > 0; i--)
-        //     postOne.add(i);
-
-        // if(fromPost == 1)
-        //     postOne.remove(postOne.size() - 1);
-        //     postTwo.add(disk);
-        
-        
-        String[][] posts = new String[numDisks][2];
-
+    {        
+        String[][] posts = new String[numDisks][3];
+        int j = 0;
         for(int i = numDisks; i > 0; i--) //fill first post with original disks 
-            posts[i][0] = i;
+        {
+            posts[j][0] = i;
+            j++;
+        }
         
-        posts[i][disk + 1]
+        posts[fromPost - 1][numDisks - disk] = ""; //removes disk from orig post
+        posts[toPost - 1][numDisks - disk] = disk;//put on new post
+
+        for(int i = 0; i < posts.length; i++)
+        {
+            for(int k = 0; k < posts[1].length; k++)
+                System.out.print(posts[i][k]);
+            System.out.println("---");
+        }
     }
 }
