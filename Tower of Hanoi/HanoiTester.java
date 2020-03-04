@@ -14,12 +14,18 @@ public class HanoiTester
         for(int i = disks; i > 0; i--) //fill first post with original disks 
         {
             posts[j][0] = i + "";
+            System.out.print(i);
             j++;
         }
 
-        Hanoi joe = new Hanoi(disks, posts); //just to pass orig num of disks and the array
+        Hanoi newGame = new Hanoi(disks, posts); //just to pass orig num of disks and the array
     
-        Hanoi.move(disks, 1, 2, 3);
-        System.out.println("Done in " + Hanoi.getMoves() + " moves");
+        System.out.println("---");
+        System.out.println("---");
+        System.out.println("---");
+        System.out.println();
+
+        newGame.move(disks, 1, 2, 3);
+        System.out.println("Done in " + newGame.getMoves() + " moves");
     }
 }

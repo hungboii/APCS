@@ -1,8 +1,8 @@
 public class Hanoi
 {
-    private static int moveCount;
-    private static int numDisks;
-    private static String[][] posts;
+    private int moveCount;
+    private int numDisks;
+    private String[][] posts;
 
     public Hanoi(int disks, String[][] poles)
     {
@@ -10,7 +10,7 @@ public class Hanoi
         posts = poles;
     }
     
-    public static void move(int disks, int fromPost, int sparePost, int toPost)
+    public void move(int disks, int fromPost, int sparePost, int toPost)
     {
         if(disks == 1)
         {
@@ -25,12 +25,12 @@ public class Hanoi
             moveCount++;
         }
     }
-    public static void moveOne(int disk, int fromPost, int toPost)
+    public void moveOne(int disk, int fromPost, int toPost)
     {
-        posts[numDisks - disk][fromPost - 1] = ""; //removes disk from orig post
+        posts[numDisks - disk][fromPost - 1] = ""; //removes disk from orig post, replace w/ empty string
         posts[numDisks - disk][toPost - 1] = disk + ""; //put on new post
 
-        for(int i = 0; i < posts[1].length; i++)
+        for(int i = 0; i < posts[1].length; i++) //print the posts
         {
             for(int k = 0; k < posts.length; k++)
             {
@@ -43,7 +43,7 @@ public class Hanoi
         System.out.println();
 
     }
-    public static int getMoves()
+    public int getMoves()
     {
         return moveCount;
     }
