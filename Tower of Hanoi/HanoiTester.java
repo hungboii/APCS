@@ -20,7 +20,7 @@ public class HanoiTester
 
         Hanoi newGame = new Hanoi(disks, posts); //just to pass orig num of disks and the array
     
-        System.out.println("---");
+        System.out.println("---"); //draw posts with all disks on first post
         System.out.println("---");
         System.out.println("---");
         System.out.println();

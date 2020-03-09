@@ -34,7 +34,7 @@ public class Hanoi
         {
             for(int k = 0; k < posts.length; k++)
             {
-                if(posts[k][i] == null)
+                if(posts[k][i] == null) //when create array everything is null, so don't print those
                     continue;
                 System.out.print(posts[k][i]);
             }
