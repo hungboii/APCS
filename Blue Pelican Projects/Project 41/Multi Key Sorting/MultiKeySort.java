@@ -1,49 +1,56 @@
 import java.io.File;
 import java.util.Scanner;
-import java.util.ArrayList;
 import java.io.*;
 
-public class MultiKeySort 
+public class MultiKeySort
 {
     public static void main(String[] args) throws FileNotFoundException
     {
         File myfile = new File("Names_ages.txt");
         Scanner filereader = new Scanner(myfile);
         
-        ArrayList<String> names = new ArrayList<String>();
+        String[] names = new String[100];
+        int[] ages = new int[100];
+        int maxIndex = 0;
 
         while(filereader.hasNext())
         {
-            names.add(filereader.nextLine());
+            String line = filereader.nextLine();
+            names[maxIndex] = line.substring(0, line.indexOf(" "));
+            ages[maxIndex] = Integer.parseInt(line.substring(line.indexOf(" ") + 1));
+            maxIndex++;
         }
-        sort(names);
-        for(String joe: names)
-            System.out.println(joe.substring(0, joe.indexOf(" ")) + ", " + joe.substring(joe.indexOf(" ") +1));
+        sort(names, ages, maxIndex);
+
+        for(int i = 0; i < maxIndex; i++)
+            System.out.println(names[i] + ", " + ages[i]);
+            
         filereader.close();
     }
 
-    public static void sort(ArrayList<String> names)
+    public static void sort(String[] names, int[] ages, int maxIndex)
     {
         int minIndex;
-        for(int i = 0; i < names.size(); i++)
+        for(int i = 0; i < maxIndex; i++)
         {
             minIndex = i;
-            for(int j = i + 1; j < names.size(); j++)
+            for(int j = i + 1; j < maxIndex; j++)
             {
-                String name1 = names.get(j).substring(0, names.get(j).indexOf(" "));
-                String name2 = names.get(minIndex).substring(0, names.get(minIndex).indexOf(" "));
-
-                if(name1.compareTo(name2) < 0)
+                if(names[j].compareTo(names[minIndex]) < 0)
                     minIndex = j;
 
-                else if(name1.compareTo(name2) == 0) //if names are same
-                    if(Integer.parseInt(names.get(j).substring(names.get(j).indexOf(" ") + 1)) < Integer.parseInt(names.get(minIndex).substring(names.get(minIndex).indexOf(" ") + 1)))
+                else if(names[j].compareTo(names[minIndex]) == 0) //if names are same then compare the age
+                    if(ages[j] < ages[minIndex])
                         minIndex = j;
             }
 
-            String temp = names.get(minIndex);
-            names.set(minIndex, names.get(i)); //swap first number to where its supposed to go
-            names.set(i, temp); //set first number to what is lowest number
+            String temp = names[minIndex];
+            names[minIndex] = names[i];
+            names[i] = temp; 
+
+            int temporary = ages[minIndex];
+            ages[minIndex] = ages[i];
+            ages[i] = temporary; 
         }
         
     }
