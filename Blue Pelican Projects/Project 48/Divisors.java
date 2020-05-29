@@ -46,7 +46,7 @@ public class Divisors
 
         long endTime = System.nanoTime();
         long elaspedTime = endTime - startTime;
-        System.out.println("Your algorithm took " + (elaspedTime)/1000000000.0 + " to run.");
+        System.out.println("It took " + (elaspedTime)/1000000000.0 + " seconds.");
     }
     public static void methodTwo(long num)
     {
@@ -64,7 +64,7 @@ public class Divisors
 
         long endTime = System.nanoTime();
         long elaspedTime = endTime - startTime;
-        System.out.println("Your algorithm took " + (elaspedTime)/1000000000.0 + " to run.");
+        System.out.println("It took " + (elaspedTime)/1000000000.0 + " seconds.");
     }
     public static void methodThree(long num)
     {
@@ -91,6 +91,6 @@ public class Divisors
 
         long endTime = System.nanoTime();
         long elaspedTime = endTime - startTime;
-        System.out.println("Your algorithm took " + (elaspedTime)/1000000000.0 + " to run.");
+        System.out.println("It took " + (elaspedTime)/1000000000.0 + " seconds.");
     }
 }
