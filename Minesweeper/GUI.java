@@ -61,7 +61,7 @@ public class GUI extends JFrame
         Board mine = new Board(mines);
         neighbors = mine.getNumMinesAround();
 
-        BoardUITest board = new BoardUITest();
+        JPanel board = (JPanel)win.getContentPane();
         win.setContentPane(board);
 
         MouseReader move = new MouseReader();
@@ -146,207 +146,208 @@ public class GUI extends JFrame
         */
     }
 
-    public class BoardUITest extends JPanel
+    public void paintComponent(Graphics g) //most of this i got from the graphics project, but some things like drawString(Integer.toString()) i got from online
     {
-        public void paintComponent(Graphics g) //most of this i got from the graphics project, but some things like drawString(Integer.toString()) i got from online
+        g.setColor(Color.DARK_GRAY);
+        g.fillRect(0, 0, 1280, 800);
+        for(int i = 0; i < 16; i++)
         {
-            g.setColor(Color.DARK_GRAY);
-            g.fillRect(0, 0, 1280, 800);
-            for(int i = 0; i < 16; i++)
+            for(int j = 0; j < 9; j++)
             {
-                for(int j = 0; j < 9; j++)
-                {
-                    g.setColor(Color.GRAY);
-
-                    /*
-                    if(mines[i][j] == 1) //checking mines are placing
-                    {
-                        g.setColor(Color.YELLOW);
-                    } 
-                    */
-                    if(revealed[i][j] == true)
-                    {
-                        g.setColor(Color.WHITE);
-                        //g.setColor(Color.YELLOW);
-                        if(mines[i][j] == 1)
-                            g.setColor(Color.red);
-                    }
-                    /*
-                    else if(flagged[i][j] == true)
-                    {
-                        g.setColor(Color.GREEN);
-                    }
-                    */
-
-                    g.fillRect(spacing + i * 80, spacing + j * 80 + 80, 80 - (2 * spacing), 80 - (2 * spacing));
-
-                    if(flagged[i][j] == true) //draw flag
-                    {
-                        g.setColor(Color.BLACK);
-                        g.fillRect(i*80+38, j*80+100, 5, 40);
-                        g.fillRect(i*80+24, j*80+135, 30, 10);
-                        g.setColor(Color.RED);
-                        g.fillRect(i*80+24, j*80+100, 20, 13);
-                    }
-                    /*
-                    if(i == wrongFlagX && i != 0 && j == wrongFlagY && j != 0)
-                    {
-                        System.out.println("drawingline");
-                        g.setColor(Color.BLACK);
-                        g.fillRect(i*80+38, j*80+100, 5, 40);
-                        g.fillRect(i*80+24, j*80+135, 30, 10);
-                        g.setColor(Color.RED);
-                        g.fillRect(i*80+24, j*80+100, 20, 13);
-
-                        g.setColor(Color.RED);
-                        g.drawLine(i*80 + 20, j*80 + 70, i*80 + 58, j*80 + 150); //left top right bottom
-                        g.drawLine(i*80 + 20, j*80 + 150, i*80 + 58, j*80 + 70);
-
-                    }
-                    */
-                    if(revealed[i][j] == true) // possibly add diff colors for each number - just add if statements here
-                    {
-                        g.setColor(Color.BLACK);
-                        if(mines[i][j] == 0) //if not a mine
-                        {
-                            //numRevealed++;
-                            if(neighbors[i][j] == 0) //if a blank square, reveal everything around it too
-                            {   
-                                for(int row = i - 1; row <= i + 1; row++)
-                                {
-                                    for(int col = j - 1; col <= j + 1; col++)
-                                    {   
-                                        if(row == -1 || row == 16 || col == -1 || col == 9)
-                                            continue;
-                                        else if(mines[row][col] == 0)
-                                            revealed[row][col] = true;
-                                    }
-                                }
-                                g.setColor(Color.WHITE); //blank box for 0s
-                            }
-                            g.setFont(new Font("Comic Sans", Font.BOLD, 40));
-                            g.drawString(Integer.toString(neighbors[i][j]), i*80 + 27, j*80 + 80 + 55);
-                            //g.setColor(Color.YELLOW);
-                        }
-                        else //draw all the mines and dispaly lose message
-                        {
-                            
-                            for(int k = 0; k < 16; k++)
-                            {
-                                for(int h = 0; h < 9; h++)
-                                {
-                                    if(mines[k][h] == 1)
-                                    {
-                                        revealed[k][h] = true;
-                                        /*
-                                        g.setColor(Color.red);
-                                        g.fillRect(spacing + k * 80, spacing + h * 80 + 80, 80 - (2 * spacing), 80 - (2 * spacing));
-                                        g.setColor(Color.BLACK);
-                                        g.fillOval(k * 80 + 21, h * 80 + 80 + 23, 35, 35); //draw mine
-                                        */
-                                    }
-                                }
-                            }
-                            g.setColor(Color.RED);
-                            g.fillRect(spacing + i * 80, spacing + j * 80 + 80, 80 - (2 * spacing), 80 - (2 * spacing));
-                            g.setColor(Color.BLACK);
-                            g.fillOval(i * 80 + 21, j * 80 + 80 + 23, 35, 35); //draw mine
-                            //winStatus = false;
-                            gameOver = true;
-                            //endGame();
-                        }
-                    }
-                    /* if(xCoord >= spacing + i * 80 && xCoord < spacing + i * 80 + 80 - 2 * spacing && yCoord >= spacing + j*80 + 80 + 26 && yCoord < spacing + j * 80 + 80 + 80 + 26 - 2 * spacing) //mouse testing
-                    {
-                        //System.out.println(xCoord);
-                        g.setColor(Color.red);
-                    } */
-                    if(numRevealed == 124) //if all squares exluding mines are revealed, 144 total squares - 20 mines = 120
-                    {
-                        winStatus = true;
-                        gameOver = true;
-                    }
-                }
-            }
-            //drawing the outline and eyes of the face
-            g.setColor(Color.YELLOW);
-            g.fillOval(faceX, faceY + 3, 60, 60);
-            g.setColor(Color.BLACK);
-            g.fillOval(faceX + 13, faceY + 19, 10, 10); //eyes
-            g.fillOval(faceX + 37, faceY + 19, 10, 10);
-
-            //draw smiley face
-            if(winStatus == false && gameOver == false)
-            {
-                g.fillRect(faceX + 19, faceY + 49, 22, 5 );
-                g.fillRect(faceX + 14, faceY + 44, 5, 5);
-                g.fillRect(faceX + 41, faceY + 44, 5, 5);
-                g.fillRect(faceX + 9, faceY + 39, 5, 5);
-                g.fillRect(faceX + 46, faceY + 39, 5, 5);
-            }
-            //draw sad face
-            else if(winStatus == false && gameOver) 
-            {
-                //System.out.println("You lose!");
-                g.fillRect(faceX + 19, faceY + 39, 22, 5 );
-                g.fillRect(faceX + 14, faceY + 44, 5, 5);
-                g.fillRect(faceX + 41, faceY + 44, 5, 5);
-                g.fillRect(faceX + 9, faceY + 49, 5, 5);
-                g.fillRect(faceX + 46, faceY + 49, 5, 5);
-
+                g.setColor(Color.GRAY);
 
                 /*
-                if(what < 1)
+                if(mines[i][j] == 1) //checking mines are placing
                 {
-                    JOptionPane.showMessageDialog(win, "you lose", "Test", JOptionPane.INFORMATION_MESSAGE);
-                    what++;
+                    g.setColor(Color.YELLOW);
+                } 
+                */
+                if(revealed[i][j] == true)
+                {
+                    g.setColor(Color.WHITE);
+                    //g.setColor(Color.YELLOW);
+                    if(mines[i][j] == 1)
+                        g.setColor(Color.red);
+                }
+                /*
+                else if(flagged[i][j] == true)
+                {
+                    g.setColor(Color.GREEN);
                 }
                 */
-                //add "you lose" message  - have window pop up or just print it along the top?
+
+                g.fillRect(spacing + i * 80, spacing + j * 80 + 80, 80 - (2 * spacing), 80 - (2 * spacing));
+
+                if(flagged[i][j] == true) //draw flag
+                {
+                    g.setColor(Color.BLACK);
+                    g.fillRect(i*80+38, j*80+100, 5, 40);
+                    g.fillRect(i*80+24, j*80+135, 30, 10);
+                    g.setColor(Color.RED);
+                    g.fillRect(i*80+24, j*80+100, 20, 13);
+                }
+                /*
+                if(i == wrongFlagX && i != 0 && j == wrongFlagY && j != 0)
+                {
+                    System.out.println("drawingline");
+                    g.setColor(Color.BLACK);
+                    g.fillRect(i*80+38, j*80+100, 5, 40);
+                    g.fillRect(i*80+24, j*80+135, 30, 10);
+                    g.setColor(Color.RED);
+                    g.fillRect(i*80+24, j*80+100, 20, 13);
+
+                    g.setColor(Color.RED);
+                    g.drawLine(i*80 + 20, j*80 + 70, i*80 + 58, j*80 + 150); //left top right bottom
+                    g.drawLine(i*80 + 20, j*80 + 150, i*80 + 58, j*80 + 70);
+
+                }
+                */
+                if(revealed[i][j] == true) // possibly add diff colors for each number - just add if statements here
+                {
+                    g.setColor(Color.BLACK);
+                    if(mines[i][j] == 0) //if not a mine
+                    {
+                        //numRevealed++;
+                        if(neighbors[i][j] == 0) //if a blank square, reveal everything around it too
+                        {   
+                            for(int row = i - 1; row <= i + 1; row++)
+                            {
+                                for(int col = j - 1; col <= j + 1; col++)
+                                {   
+                                    if(row == -1 || row == 16 || col == -1 || col == 9)
+                                        continue;
+                                    else if(mines[row][col] == 0)
+                                        revealed[row][col] = true;
+                                }
+                            }
+                            g.setColor(Color.WHITE); //blank box for 0s
+                        }
+                        g.setFont(new Font("Comic Sans", Font.BOLD, 40));
+                        g.drawString(Integer.toString(neighbors[i][j]), i*80 + 27, j*80 + 80 + 55);
+                        //g.setColor(Color.YELLOW);
+                    }
+                    else //draw all the mines and dispaly lose message
+                    {
+                        
+                        for(int k = 0; k < 16; k++)
+                        {
+                            for(int h = 0; h < 9; h++)
+                            {
+                                if(mines[k][h] == 1)
+                                {
+                                    revealed[k][h] = true;
+                                    /*
+                                    g.setColor(Color.red);
+                                    g.fillRect(spacing + k * 80, spacing + h * 80 + 80, 80 - (2 * spacing), 80 - (2 * spacing));
+                                    g.setColor(Color.BLACK);
+                                    g.fillOval(k * 80 + 21, h * 80 + 80 + 23, 35, 35); //draw mine
+                                    */
+                                }
+                            }
+                        }
+                        g.setColor(Color.RED);
+                        g.fillRect(spacing + i * 80, spacing + j * 80 + 80, 80 - (2 * spacing), 80 - (2 * spacing));
+                        g.setColor(Color.BLACK);
+                        g.fillOval(i * 80 + 21, j * 80 + 80 + 23, 35, 35); //draw mine
+                        //winStatus = false;
+                        gameOver = true;
+                        //endGame();
+                    }
+                }
+                /* if(xCoord >= spacing + i * 80 && xCoord < spacing + i * 80 + 80 - 2 * spacing && yCoord >= spacing + j*80 + 80 + 26 && yCoord < spacing + j * 80 + 80 + 80 + 26 - 2 * spacing) //mouse testing
+                {
+                    //System.out.println(xCoord);
+                    g.setColor(Color.red);
+                } 
+                if(numRevealed == 124) //if all squares exluding mines are revealed, 144 total squares - 20 mines = 120
+                {
+                    winStatus = true;
+                    gameOver = true;
+                }
+                */
             }
-            //draw sunglasses face
-            else if(areAllFlagsCorrect())
-            {
-                //System.out.println("you win!");
-                g.fillRect(faceX + 19, faceY + 49, 22, 5 ); //smile
-                g.fillRect(faceX + 14, faceY + 44, 5, 5);
-                g.fillRect(faceX + 41, faceY + 44, 5, 5);
-
-                g.fillRect(faceX + 11, faceY + 17, 39, 5); //glasses frames
-                g.fillRect(faceX + 11, faceY + 22, 17, 9);
-                g.fillRect(faceX + 33, faceY + 22, 17, 9);
-
-                g.fillRect(faceX + 6, faceY + 22, 5, 5); //glasses
-                g.fillRect(faceX + 50, faceY + 22, 5, 5);
-                g.fillRect(faceX + 1, faceY + 27, 5, 5);
-                g.fillRect(faceX + 55, faceY + 27, 5, 5);
-            }
-            //minecounter
-            g.setColor(Color.BLACK);
-            g.fillRect(mineCountX, mineCountY - 5, 100, 70);
-            g.setColor(Color.RED);
-            g.setFont(new Font("Comic Sans", Font.PLAIN, 70));
-            g.drawString(Integer.toString(minesLeft), mineCountX + 10, mineCountY + 55);
-
-            //timer
-            g.setColor(Color.BLACK);
-            g.fillRect(timerX - 20, timerY, 140, 70);
-            finalTime = time; //storing the old time
-            g.setColor(Color.RED);
-
-            if(gameOver == true) 
-            {
-                g.drawString(Integer.toString(finalTime), timerX -12, timerY + 60);
-            }
-            else
-            {
-                time = (int)((new Date().getTime() - startDate.getTime()) / 1000);
-                g.drawString(Integer.toString(time), timerX -12, timerY + 60);
-            }
-
-            repaint();
-
         }
+        //drawing the outline and eyes of the face
+        g.setColor(Color.YELLOW);
+        g.fillOval(faceX, faceY + 3, 60, 60);
+        g.setColor(Color.BLACK);
+        g.fillOval(faceX + 13, faceY + 19, 10, 10); //eyes
+        g.fillOval(faceX + 37, faceY + 19, 10, 10);
+
+        //draw smiley face
+        if(winStatus == false && gameOver == false)
+        {
+            g.fillRect(faceX + 19, faceY + 49, 22, 5 );
+            g.fillRect(faceX + 14, faceY + 44, 5, 5);
+            g.fillRect(faceX + 41, faceY + 44, 5, 5);
+            g.fillRect(faceX + 9, faceY + 39, 5, 5);
+            g.fillRect(faceX + 46, faceY + 39, 5, 5);
+        }
+        //draw sad face
+        else if(winStatus == false && gameOver) 
+        {
+            //System.out.println("You lose!");
+            g.fillRect(faceX + 19, faceY + 39, 22, 5 );
+            g.fillRect(faceX + 14, faceY + 44, 5, 5);
+            g.fillRect(faceX + 41, faceY + 44, 5, 5);
+            g.fillRect(faceX + 9, faceY + 49, 5, 5);
+            g.fillRect(faceX + 46, faceY + 49, 5, 5);
+
+
+            /*
+            if(what < 1)
+            {
+                JOptionPane.showMessageDialog(win, "you lose", "Test", JOptionPane.INFORMATION_MESSAGE);
+                what++;
+            }
+            */
+            //add "you lose" message  - have window pop up or just print it along the top?
+        }
+        //draw sunglasses face
+        if(areAllFlagsCorrect())
+        {
+            //System.out.println("you win!");
+            winStatus = true;
+            gameOver = true;
+            
+            g.fillRect(faceX + 19, faceY + 49, 22, 5 ); //smile
+            g.fillRect(faceX + 14, faceY + 44, 5, 5);
+            g.fillRect(faceX + 41, faceY + 44, 5, 5);
+
+            g.fillRect(faceX + 11, faceY + 17, 39, 5); //glasses frames
+            g.fillRect(faceX + 11, faceY + 22, 17, 9);
+            g.fillRect(faceX + 33, faceY + 22, 17, 9);
+
+            g.fillRect(faceX + 6, faceY + 22, 5, 5); //glasses
+            g.fillRect(faceX + 50, faceY + 22, 5, 5);
+            g.fillRect(faceX + 1, faceY + 27, 5, 5);
+            g.fillRect(faceX + 55, faceY + 27, 5, 5);
+        }
+        //minecounter
+        g.setColor(Color.BLACK);
+        g.fillRect(mineCountX, mineCountY - 5, 100, 70);
+        g.setColor(Color.RED);
+        g.setFont(new Font("Comic Sans", Font.PLAIN, 70));
+        g.drawString(Integer.toString(minesLeft), mineCountX + 10, mineCountY + 55);
+
+        //timer
+        g.setColor(Color.BLACK);
+        g.fillRect(timerX - 20, timerY, 140, 70);
+        finalTime = time; //storing the old time
+        g.setColor(Color.RED);
+
+        if(gameOver == true) 
+        {
+            g.drawString(Integer.toString(finalTime), timerX -12, timerY + 60);
+        }
+        else
+        {
+            time = (int)((new Date().getTime() - startDate.getTime()) / 1000);
+            g.drawString(Integer.toString(time), timerX -12, timerY + 60);
+        }
+
+        repaint();
+
     }
     /*
     public void endGame()
@@ -551,11 +552,17 @@ public class GUI extends JFrame
 
     public boolean areAllFlagsCorrect()
     {
+        
         for(Mine joe : mineLocs)
         {
             if(flagged[joe.getXCoord()][joe.getYCoord()] == false)
+            {   
+                //System.out.println("chcking");
                 return false;
+            }
         }
+        //System.out.println("all good");
+
         return true;
     }
 
